@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="./assest/styles/style.css">
+    <link rel="stylesheet" href="./assest/styles/add_style.css">
     <title>RMS</title>
 </head>
 
@@ -105,10 +106,59 @@
         <!-- Main Content -->
         <main>
             
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
-        
+            <div class="form-container">
+                <div class="form-left ">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-right">
+                    
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" placeholder="Bio"></textarea>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="submit-btn">ADD</button>
+                </div>
+            </div>
         </main>
         <!-- End of Main Content -->
         
@@ -135,7 +185,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
         
@@ -144,7 +194,7 @@
         
             <div class="user-profile">
                 <div class="logo">
-                    <img src="images/logo.png" alt="Company logo">
+                    <img src="../images/logo.png" alt="Company logo">
                     <h2>Favor Haven</h2>
                     <p>The Best for The Best</p>
                 </div>
@@ -209,7 +259,7 @@
         
         </div>
         
-
+    </div>
     <script src="./assest/scripts/orders.js"></script>
     <script src="./assest/scripts/index.js"></script>
 </body>

@@ -13,6 +13,7 @@ closeBtn.addEventListener('click', () => {
 });
 
 darkMode.addEventListener('click', () => {
+    
     document.body.classList.toggle('dark-mode-variables');
     darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
     darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
@@ -32,19 +33,8 @@ Orders.forEach(order => {
     tr.innerHTML = trContent;
     document.querySelector('table tbody').appendChild(tr);
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebarLinks = document.querySelectorAll('.sidebar a');
 
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            // Add 'active' class to the clicked link
-            sidebarLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            this.classList.add('active');
-        });
-    });
-});
+
 
 
 
