@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./assest/styles/style.css">
+    <link rel="stylesheet" href="./assest/styles/mang_style.css">
     <title>RMS</title>
 </head>
 
@@ -15,7 +19,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Dashboard</h2>
+                <h1>Tables</h2>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -24,7 +28,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="index.html" class="active">
+                <a href="../index.html" >
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -42,7 +46,7 @@
                     </span>
                     <h3>New Users</h3>
                 </a>
-                <a href="tables.html">
+                <a href="tables.html" class="active">
                     <span class="material-icons-sharp">
                         table_restaurant
                     </span>
@@ -104,12 +108,116 @@
 
         <!-- Main Content -->
         <main>
-            
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
-        
+            <div class="form-container">
+                <div class="manage-users-container">
+                    <div class="form-group">
+                        Show 
+                        <select id="category">
+                            <option value="4">4</option>
+                            <!-- More options can be added here -->
+                        </select> 
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table name</th>
+                                <th>Capacity</th>
+                                <th>Available</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>donna</td>
+                
+                                <td>Donna</td>
+                                <td>Edwards</td>
+                                <td>7025556960</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>veronica</td>
+                                
+                                <td>Veronica</td>
+                                <td>Lyle</td>
+                                <td>7850002680</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>liamoore</td>
+                                
+                                <td>Liam</td>
+                                <td>Moore</td>
+                                <td>7400002140</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>kenny</td>
+                                
+                                <td>Kenny</td>
+                                <td>Waldrom</td>
+                                <td>7545554540</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="form-container">
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="table-name">Table Name</label>
+                                <input type="text" id="table-name" name="table-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="capacity">Capacity</label>
+                                <input type="number" id="capacity" name="capacity">
+                            </div>
+                        </div>
+                        <div class="form-right">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" name="status">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="availability">Availability</label>
+                                <select id="availability" name="availability">
+                                    <option value="available">Available</option>
+                                    <option value="unavailable">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button class="submit-btn">Submit</button>
+                        </div>
+                    </div>
+                    <div class="pagination-container">
+                        Showing 1 of 1 entries
+                        <ul class="pagination">
+                            <li><a href="#">Previous</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
+        
         <!-- End of Main Content -->
         
         <!-- Right Section -->
@@ -135,7 +243,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
         
@@ -144,12 +252,11 @@
         
             <div class="user-profile">
                 <div class="logo">
-                    <img src="images/logo.png" alt="Company logo">
+                    <img src="../images/logo.png" alt="Company logo">
                     <h2>Favor Haven</h2>
                     <p>The Best for The Best</p>
                 </div>
             </div>
-        
             <div class="reminders">
                 <div class="header">
                     <h2>Reminders</h2>
@@ -210,8 +317,7 @@
         </div>
         
 
-    <script src="./assest/scripts/orders.js"></script>
-    <script src="./assest/scripts/index.js"></script>
+    
 </body>
 
 </html>

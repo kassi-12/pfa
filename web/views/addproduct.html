@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="./assest/styles/add_style.css">
     <link rel="stylesheet" href="./assest/styles/style.css">
     <title>RMS</title>
 </head>
@@ -15,7 +16,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Dashboard</h2>
+                <h1>Add Product</h2>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -24,7 +25,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="index.html" class="active">
+                <a href="../index.html" >
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -60,7 +61,7 @@
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="addproduct.html" >
+                <a href="addproduct.html" class="active">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -104,12 +105,53 @@
 
         <!-- Main Content -->
         <main>
-            
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
-        
+            <div class="form-container">
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="product-image">Product Image</label>
+                        <input type="file" id="product-image" name="product-image" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="product-name" placeholder="Product Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" placeholder="Price" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-right">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <!-- Assuming categories are dynamically loaded from a database -->
+                            <option value="appetizer">Appetizer</option>
+                            <option value="main-course">Main Course</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="beverage">Beverage</option>
+                            <!-- Add more categories as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="active">Active</label>
+                        <div class="radio-group">
+                            <input type="radio" id="active-yes" name="active" value="yes">
+                            <label for="active-yes">Yes</label>
+                            <input type="radio" id="active-no" name="active" value="no">
+                            <label for="active-no">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="submit-btn">ADD</button>
+                </div>
+            </div>
         </main>
+        
         <!-- End of Main Content -->
         
         <!-- Right Section -->
@@ -135,7 +177,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
         
@@ -144,7 +186,7 @@
         
             <div class="user-profile">
                 <div class="logo">
-                    <img src="images/logo.png" alt="Company logo">
+                    <img src="../images/logo.png" alt="Company logo">
                     <h2>Favor Haven</h2>
                     <p>The Best for The Best</p>
                 </div>
