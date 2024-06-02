@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="./assest/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/mang_style.css">
+    <link rel="stylesheet" href="../../assets/styles/style.css">
     <title>RMS</title>
 </head>
 
@@ -15,7 +18,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Category</h2>
+                <h1>Product</h2>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -24,75 +27,75 @@
             </div>
 
             <div class="sidebar">
-                <a href="../index.html" >
+                <a href="../../index.html" >
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="users.html">
+                <a href="../users/users.html">
                     <span class="material-icons-sharp">
                         person
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="adduser.html">
+                <a href="../users/adduser.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New Users</h3>
                 </a>
-                <a href="tables.html">
+                <a href="../Tables/tables.html">
                     <span class="material-icons-sharp">
                         table_restaurant
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="category.html" class="active">
+                <a href="../categorys/category.html">
                     <span class="material-icons-sharp">
                         category
                     </span>
                     <h3>Category</h3>
                 </a>
-                <a href="products.html" >
+                <a href="../products/products.html"  class="active">
                     <span class="material-icons-sharp">
                         inventory_2
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="addproduct.html" >
+                <a href="../products/addproduct.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="orders.html">
+                <a href="../Orders/orders.html">
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
                     <span class="message-count">27</span>
                 </a>
-                <a href="addorder.html">
+                <a href="../Orders/addorder.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New order</h3>
                 </a>
-                <a href="report.html">
+                <a href="../Raports/report.html">
                     <span class="material-icons-sharp">
                         report_gmailerrorred
                     </span>
                     <h3>Reports</h3>
                 </a>
-                <a href="settings.html">
+                <a href="../Settings/settings.html">
                     <span class="material-icons-sharp">
                         settings
                     </span>
                     <h3>Settings</h3>
                 </a>
                 
-                <a href="login.html">
+                <a href="../../login.html">
                     <span class="material-icons-sharp">
                         logout
                     </span>
@@ -105,10 +108,82 @@
         <!-- Main Content -->
         <main>
             
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
-        
+            <div class="form-container">
+                <div class="manage-users-container">
+                    <div class="form-group">
+                        Show 
+                        <select id="category">
+                            <option value="4">4</option>
+                            <!-- More options can be added here -->
+                        </select> 
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>donna</td>
+                               
+                                <td>10</td>
+                                
+                                <td>7025556960</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>donna</td>
+                               
+                                <td>10</td>
+                                
+                                <td>7025556960</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>donna</td>
+                               
+                                <td>10</td>
+                                
+                                <td>7025556960</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>donna</td>
+                               
+                                <td>10</td>
+                                
+                                <td>7025556960</td>
+                                <td class="actions">
+                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-container">
+                        Showing 1 of 1 entries
+                        <ul class="pagination">
+                            <li><a href="#">Previous</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End of User Management -->
         </main>
         <!-- End of Main Content -->
         
@@ -135,7 +210,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="../images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
         
@@ -144,7 +219,7 @@
         
             <div class="user-profile">
                 <div class="logo">
-                    <img src="../images/logo.png" alt="Company logo">
+                    <img src="../../images/logo.png" alt="Company logo">
                     <h2>Favor Haven</h2>
                     <p>The Best for The Best</p>
                 </div>
@@ -210,7 +285,6 @@
         </div>
         
 
-    <script src="./assest/scripts/orders.js"></script>
     <script src="./assest/scripts/index.js"></script>
 </body>
 
