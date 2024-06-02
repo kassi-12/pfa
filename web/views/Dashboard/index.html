@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
-    <script type="text/javascript" src="/eel.js"></script>
-
     <title>RMS</title>
 </head>
 
@@ -18,7 +15,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Add Order</h2>
+                <h1>Orders</h2>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -27,7 +24,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html" >
+                <a href="#" class="active">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -69,14 +66,14 @@
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html">
+                <a href="../Orders/orders.html"  >
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
                     <span class="message-count">27</span>
                 </a>
-                <a href="../Orders/addorder.html"  class="active">
+                <a href="../Orders/addorder.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -109,7 +106,153 @@
         <main>
             
             <!-- Analyses -->
-           
+            <div class="analyse">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Earnings</h3>
+                            <h1>$65,024</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+81%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Paid Orders</h3>
+                            <h1>$65,024</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+81%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Food Products</h3>
+                            <h1>24,981</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>-48%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searches">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Food Category</h3>
+                            <h1>14,147</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+21%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>UnPaid Orders</h3>
+                            <h1>10,567</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+12%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Orders</h3>
+                            <h1>38,254</h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+45%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- End of Analyses -->
+        
+            <!-- New Users Section -->
+            <div class="new-users">
+                <h2>Users</h2>
+                <div class="user-list">
+                    <div class="user">
+                        <img src="../../images/profile-2.jpg" alt="User profile picture">
+                        <h2>Jack</h2>
+                        <p>54 Min Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="../../images/profile-3.jpg" alt="User profile picture">
+                        <h2>Amir</h2>
+                        <p>3 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="../../images/profile-4.jpg" alt="User profile picture">
+                        <h2>Ember</h2>
+                        <p>6 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="../../images/plus.png" alt="Add more users">
+                        <h2>More</h2>
+                        <p>New User</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End of New Users Section -->
+        
+            <!-- Recent Orders Table -->
+            <div class="recent-orders">
+                <h2>Recent Orders</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order Name</th>
+                            <th>Order Number</th>
+                            <th>Table</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <a href="#">Show All</a>
+            </div>
             <!-- End of Recent Orders -->
         
         </main>
@@ -212,9 +355,12 @@
         
         </div>
         
-
-    <script src="./assest/scripts/orders.js"></script>
-    <script src="./assest/scripts/index.js"></script>
+        <script type="text/javascript" src="/eel.js"></script>
+        
+      
+        <script type="text/javascript" src="../../assets/scripts/index.js"></script>
+   
+     
 </body>
 
 </html>

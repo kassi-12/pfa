@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+
     <title>RMS</title>
 </head>
 
@@ -18,7 +20,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Category</h2>
+                <h1>Category</h1>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -27,7 +29,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="../../index.html" >
+                <a href="../Dashboard/index.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -51,19 +53,19 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html"  class="active">
+                <a href="../categorys/category.html" class="active">
                     <span class="material-icons-sharp">
                         category
                     </span>
                     <h3>Category</h3>
                 </a>
-                <a href="../products/products.html" >
+                <a href="../products/products.html">
                     <span class="material-icons-sharp">
                         inventory_2
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html" >
+                <a href="../products/addproduct.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -94,7 +96,7 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                
+
                 <a href="../../login.html">
                     <span class="material-icons-sharp">
                         logout
@@ -103,18 +105,19 @@
                 </a>
             </div>
         </aside>
+        <!-- End of Sidebar Section -->
+
         <!-- Main Content -->
         <main>
-            
             <!-- Analyses -->
             <div class="form-container">
                 <div class="manage-users-container">
                     <div class="form-group">
-                        Show 
+                        Show
                         <select id="category">
                             <option value="4">4</option>
                             <!-- More options can be added here -->
-                        </select> 
+                        </select>
                     </div>
                     <table>
                         <thead>
@@ -127,8 +130,6 @@
                         <tbody>
                             <tr>
                                 <td>donna</td>
-                
-                
                                 <td>7025556960</td>
                                 <td class="actions">
                                     <button class="edit-btn"><i class="fas fa-edit"></i></button>
@@ -137,8 +138,6 @@
                             </tr>
                             <tr>
                                 <td>veronica</td>
-                                
-                                
                                 <td>7850002680</td>
                                 <td class="actions">
                                     <button class="edit-btn"><i class="fas fa-edit"></i></button>
@@ -146,19 +145,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>liamoore</td>
-                                
-                                
-                                <td>7400002140</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>kenny</td>
-                                
-                                
                                 <td>7545554540</td>
                                 <td class="actions">
                                     <button class="edit-btn"><i class="fas fa-edit"></i></button>
@@ -167,14 +154,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+
                     <div class="form-container">
                         <div class="form-left">
                             <div class="form-group">
                                 <label for="table-name">Category Name</label>
                                 <input type="text" id="table-name" name="table-name">
                             </div>
-                        
+
                         </div>
                         <div class="form-right">
                             <div class="form-group">
@@ -184,7 +171,7 @@
                                     <option value="inactive">Inactive</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <div class="button-container">
                             <button class="submit-btn">Submit</button>
@@ -201,11 +188,8 @@
                 </div>
             </div>
         </main>
-            <!-- End of Recent Orders -->
-        
-        </main>
         <!-- End of Main Content -->
-        
+
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
@@ -222,7 +206,7 @@
                         dark_mode
                     </span>
                 </div>
-        
+
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b>Kassimi</b></p>
@@ -232,10 +216,10 @@
                         <img src="../../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
-        
+
             </div>
             <!-- End of Nav -->
-        
+
             <div class="user-profile">
                 <div class="logo">
                     <img src="../../images/logo.png" alt="Company logo">
@@ -243,7 +227,7 @@
                     <p>The Best for The Best</p>
                 </div>
             </div>
-        
+
             <div class="reminders">
                 <div class="header">
                     <h2>Reminders</h2>
@@ -251,7 +235,7 @@
                         notifications_none
                     </span>
                 </div>
-        
+
                 <div class="notification">
                     <div class="icon">
                         <span class="material-icons-sharp">
@@ -270,7 +254,7 @@
                         </span>
                     </div>
                 </div>
-        
+
                 <div class="notification deactive">
                     <div class="icon">
                         <span class="material-icons-sharp">
@@ -289,7 +273,7 @@
                         </span>
                     </div>
                 </div>
-        
+
                 <div class="notification add-reminder">
                     <div>
                         <span class="material-icons-sharp">
@@ -298,14 +282,15 @@
                         <h3>Add Reminder</h3>
                     </div>
                 </div>
-        
-            </div>
-        
-        </div>
-        
 
-    <script src="./assest/scripts/orders.js"></script>
-    
+            </div>
+
+        </div>
+
+
+        <script src="./assest/scripts/orders.js"></script>
+
+    </div>
 </body>
 
 </html>
