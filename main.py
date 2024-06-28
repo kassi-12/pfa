@@ -52,6 +52,29 @@ def fetch_users():
         if conn:
             conn.close()
 
+# create a function called add_product in python file
+@eel.expose
+def add_product(name, category_id, price, status, action):
+    # Add the product to the database
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO products (name, category_id, price, status, action)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (name, category_id, price, status, action))
+        conn.commit()
+        logging.info(f"Product {name} added successfully!")
+    except Exception as e:
+        logging.error(f"An error occurred while adding product {name}: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+    # Return a message to the JavaScript
+    return f"Product {name} added successfully!"
+
+
 # Start the Eel application
 @eel.expose
 def start_app():
