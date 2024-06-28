@@ -109,7 +109,6 @@
         <!-- End of Sidebar Section -->
 
         <!-- Main Content -->
-        <main>
             <div class="form-container">
                 <div class="manage-users-container">
                     <div class="form-group">
@@ -129,51 +128,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>donna</td>
-                
-                                <td>Donna</td>
-                                <td>Edwards</td>
-                                <td >7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>veronica</td>
-                                
-                                <td>Veronica</td>
-                                <td>Lyle</td>
-                                <td>7850002680</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>liamoore</td>
-                                
-                                <td>Liam</td>
-                                <td>Moore</td>
-                                <td>7400002140</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>kenny</td>
-                                
-                                <td>Kenny</td>
-                                <td>Waldrom</td>
-                                <td>7545554540</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                        <tbody id="table-data">
+                            <!-- Table data will be inserted here -->
                         </tbody>
                     </table>
                     
@@ -205,7 +161,8 @@
                             </div>
                         </div>
                         <div class="button-container">
-                            <button class="submit-btn">Submit</button>
+                            <button class="submit-btn" onclick="submitTable()">ADD</button>
+
                         </div>
                     </div>
                     <div class="pagination-container">
@@ -219,6 +176,9 @@
                 </div>
             </div>
         </main>
+        
+
+        
         
         <!-- End of Main Content -->
         
@@ -318,7 +278,7 @@
         
         </div>
         
-
+        <script src="../../assets/scripts/table.js"></script>
     
 </body>
 

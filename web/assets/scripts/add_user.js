@@ -1,4 +1,5 @@
 function submitUser() {
+
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -14,7 +15,8 @@ function submitUser() {
         return;
     }
 
-    eel.add_user(username, email, password, firstName, lastName, gender, phone, bio, dbPath)((response) => {
+   
+    eel.add_user(username, email, password, firstName, lastName, gender, phone, bio)((response) => {
         alert(response);
     });
 }

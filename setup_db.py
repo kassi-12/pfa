@@ -15,8 +15,8 @@ def create_db():
         CREATE TABLE IF NOT EXISTS category (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            status TEXT,
-            action TEXT
+            status TEXT
+            
         )
     ''')
 
@@ -71,17 +71,26 @@ def create_db():
             FOREIGN KEY (category_id) REFERENCES category(id)
         )
     ''')
-
+    # Create table table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS tables (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        table_name TEXT,
+        capacity INTEGER,
+        availability TEXT,
+        status TEXT
+    )''')
     # Create users table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
+            username TEXT NOT NULL,
             email TEXT NOT NULL,
+            password TEXT NOT NULL,
             first_name TEXT,
             last_name TEXT,
+            gender TEXT,
             phone TEXT,
-            action TEXT
+            bio TEXT
         )
     ''')
 
