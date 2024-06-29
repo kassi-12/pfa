@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	line-height: normal;
+	overflow: hidden;
   }
   
   :root {
@@ -31,6 +32,14 @@ body {
 	--padding-8xl: 27px;
 	--padding-xs: 12px;
 	--padding-12xs: 1px;
+  }
+  .minilog {
+	max-width: 60%;
+	height: auto;
+	object-fit: cover;
+	margin: 0;
+	padding: 0; 
+	float: right;
   }
   .cbf3820-3acc-4152-88c0-7dd0819-icon {
 	height: 59px;
@@ -307,6 +316,19 @@ body {
 	padding: var(--padding-mid) 38px var(--padding-base) 46px;
 	white-space: nowrap;
   }
+  .button-fields {
+	width: 100px; /* adjust the width to fit the text */
+	padding: 10px 20px; /* add some padding to make the button look nicer */
+	border: none;
+	border-radius: 5px;
+	background-color: #DF5E00; /* green background */
+	color: #ffffff; /* white text */
+	cursor: pointer; /* change the cursor to a hand pointer */
+  }
+  
+  .button-fields:hover {
+	background-color: #FD9E25; /* darker green on hover */
+  }
   .signup-child {
 	height: 100%;
 	width: 100%;
@@ -368,15 +390,7 @@ body {
 	box-sizing: border-box;
 	min-width: 558px;
   }
-  .food-4k-m37wpodzrcbv5gvw-1-icon {
-	height: 1024px;
-	flex: 1;
-	position: relative;
-	max-width: 100%;
-	overflow: hidden;
-	object-fit: cover;
-	min-width: 502px;
-  }
+
   .desktop-1 {
 	width: 100%;
 	position: relative;
@@ -387,6 +401,7 @@ body {
 	align-items: flex-start;
 	justify-content: flex-start;
 	padding: 0 0 0 85px;
+	padding-right: 0;
 	box-sizing: border-box;
 	gap: var(--gap-6xl);
 	letter-spacing: normal;
