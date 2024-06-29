@@ -91,6 +91,80 @@ def fetch_tables():
         if conn:
             conn.close()
 
+@eel.expose
+def add_product(name, category_id, price, status, action):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO products (name, category_id, price, description, active)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (name, category_id, price, status, action))
+        conn.commit()
+        logging.info(f"Product {name} added successfully!")
+        return "Product added successfully!"
+    except sqlite3.IntegrityError:
+        logging.warning("Product already exists!")
+        return "Product already exists!"
+    except Exception as e:
+        logging.error(f"An error occurred while adding product {name}: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+#implement the fetch_products function
+@eel.expose
+def fetch_products():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, name, category_id, price, description, active FROM products')
+        products = cursor.fetchall()
+        logging.info("Products fetched successfully!")
+        return products
+    except Exception as e:
+        logging.error(f"An error occurred while fetching products: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def delete_product(product_id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM products WHERE id = ?', (product_id,))
+        conn.commit()
+        logging.info(f"Product {product_id} deleted successfully!")
+        return "Product deleted successfully!"
+    except Exception as e:
+        logging.error(f"An error occurred while deleting product {product_id}: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def modify_product(product_id, name, category_id, price, description, active):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            UPDATE products
+            SET name = ?, category_id = ?, price = ?, description = ?, active = ?
+            WHERE id = ?
+        ''', (name, category_id, price, description, active, product_id))
+        conn.commit()
+        logging.info(f"Product {product_id} modified successfully!")
+        return "Product modified successfully!"
+    except Exception as e:
+        logging.error(f"An error occurred while modifying product {product_id}: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+
 
 eel.start("login.html", size=(1920, 1080))
 # # Start the Eel application
