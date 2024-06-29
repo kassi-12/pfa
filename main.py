@@ -146,18 +146,44 @@ def delete_product(product_id):
             conn.close()
 
 @eel.expose
+def fetch_product_details(product_id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, name, category_id, price, description, active FROM products WHERE id = ?', (product_id,))
+        product = cursor.fetchone()
+        if product:
+            return {
+                'id': product[0],
+                'name': product[1],
+                'category_id': product[2],
+                'price': product[3],
+                'description': product[4],
+                'active': bool(product[5])
+            }
+        else:
+            return None
+    except Exception as e:
+        logging.error(f"An error occurred while fetching product details for {product_id}: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
 def modify_product(product_id, name, category_id, price, description, active):
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('''
-            UPDATE products
-            SET name = ?, category_id = ?, price = ?, description = ?, active = ?
-            WHERE id = ?
-        ''', (name, category_id, price, description, active, product_id))
-        conn.commit()
-        logging.info(f"Product {product_id} modified successfully!")
-        return "Product modified successfully!"
+        cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
+        product = cursor.fetchone()
+        if product:
+            cursor.execute('UPDATE products SET name = ?, category_id = ?, price = ?, description = ?, active = ? WHERE id = ?', (name, category_id, price, description, active, product_id))
+            conn.commit()
+            logging.info(f"Product {product_id} modified successfully!")
+            return "Product modified successfully!"
+        else:
+            return "Product not found!"
     except Exception as e:
         logging.error(f"An error occurred while modifying product {product_id}: {e}")
         return f"An error occurred: {e}"
