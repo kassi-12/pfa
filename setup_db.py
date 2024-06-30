@@ -36,13 +36,18 @@ def create_db():
         )
     ''')
 
-    # Create orders table
+   # Create orders table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            customer_id INTEGER NOT NULL,
-            order_date DATE NOT NULL,
-            FOREIGN KEY (customer_id) REFERENCES users(id)
+            table_id INTEGER NOT NULL,
+            user_id INTEGER NOT NULL,
+            order_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+            gross_amount REAL NOT NULL,
+            s_charge REAL NOT NULL,
+            vat REAL NOT NULL,
+            discount REAL DEFAULT 0,
+            net_amount REAL NOT NULL
         )
     ''')
 
@@ -81,18 +86,27 @@ def create_db():
     )''')
     # Create users table
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            email TEXT NOT NULL,
-            password TEXT NOT NULL,
-            first_name TEXT,
-            last_name TEXT,
-            gender TEXT,
-            phone TEXT,
-            bio TEXT
-        )
-    ''')
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        first_name TEXT,
+        last_name TEXT,
+        gender TEXT,
+        phone TEXT,
+        bio TEXT,
+        group_id INTEGER,
+        FOREIGN KEY (group_id) REFERENCES groups(id)
+    )''')
+
+    # Create groups table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS groups (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        group_name TEXT NOT NULL
+    )''')
+
 
     # Commit changes and close connection
     conn.commit()

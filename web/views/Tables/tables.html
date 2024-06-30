@@ -30,7 +30,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html" >
+                <a href="../Dashboard/index.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -42,31 +42,35 @@
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../users/adduser.html" >
+                <a href="../users/adduser.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New Users</h3>
                 </a>
-                <a href="../Tables/tables.html"  class="active">
+                <a href="../groups/group.html" class="active">
+                    <span class="material-icons-sharp">group</span>
+                    <h3>Groups</h3>
+                </a>
+                <a href="../Tables/tables.html">
                     <span class="material-icons-sharp">
                         table_restaurant
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html">
+                <a href="../categorys/category.html" class="active">
                     <span class="material-icons-sharp">
                         category
                     </span>
                     <h3>Category</h3>
                 </a>
-                <a href="../products/products.html" >
+                <a href="../products/products.html">
                     <span class="material-icons-sharp">
                         inventory_2
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html" >
+                <a href="../products/addproduct.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -97,7 +101,7 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                
+
                 <a href="../../login.html">
                     <span class="material-icons-sharp">
                         logout
@@ -109,73 +113,71 @@
         <!-- End of Sidebar Section -->
 
         <!-- Main Content -->
-            <div class="form-container">
-                <div class="manage-users-container">
-                    <div class="form-group">
-                        Show 
-                        <select id="category">
-                            <option value="4">4</option>
-                            <!-- More options can be added here -->
-                        </select> 
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Table name</th>
-                                <th>Capacity</th>
-                                <th>Available</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-data">
-                            <!-- Table data will be inserted here -->
-                        </tbody>
-                    </table>
-                    
-                    <div class="form-container">
-                        <div class="form-left">
-                            <div class="form-group">
-                                <label for="table-name">Table Name</label>
-                                <input type="text" id="table-name" name="table-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="capacity">Capacity</label>
-                                <input type="number" id="capacity" name="capacity">
-                            </div>
+        <div class="form-container">
+            <div class="manage-users-container">
+                <div class="form-group">
+                    Show 
+                    <select id="category">
+                        <option value="4">4</option>
+                        <!-- More options can be added here -->
+                    </select> 
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table name</th>
+                            <th>Capacity</th>
+                            <th>Available</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-data">
+                        <!-- Table data will be inserted here -->
+                    </tbody>
+                </table>
+                
+                <div class="form-container">
+                    <div class="form-left">
+                        <div class="form-group">
+                            <label for="table-name">Table Name</label>
+                            <input type="text" id="table-name" name="table-name">
                         </div>
-                        <div class="form-right">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select id="status" name="status">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="availability">Availability</label>
-                                <select id="availability" name="availability">
-                                    <option value="available">Available</option>
-                                    <option value="unavailable">Unavailable</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="button-container">
-                            <button class="submit-btn" onclick="submitTable()">ADD</button>
-
+                        <div class="form-group">
+                            <label for="capacity">Capacity</label>
+                            <input type="number" id="capacity" name="capacity">
                         </div>
                     </div>
-                    <div class="pagination-container">
-                        Showing 1 of 1 entries
-                        <ul class="pagination">
-                            <li><a href="#">Previous</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
+                    <div class="form-right">
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select id="status" name="status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="availability">Availability</label>
+                            <select id="availability" name="availability">
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button class="submit-btn" id="submit-btn" onclick="submitTable()">ADD</button>
                     </div>
                 </div>
+                <div class="pagination-container">
+                    Showing 1 of 1 entries
+                    <ul class="pagination">
+                        <li><a href="#">Previous</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
             </div>
-        </main>
+        </div>
         
 
         

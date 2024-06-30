@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
+    <link rel="stylesheet" href="../../assets/styles/add_style.css">
     <script type="text/javascript" src="/eel.js"></script>
 
     <title>RMS</title>
@@ -27,7 +28,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html" >
+                <a href="../Dashboard/index.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -39,11 +40,15 @@
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../users/adduser.html" >
+                <a href="../users/adduser.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New Users</h3>
+                </a>
+                <a href="../groups/group.html" class="active">
+                    <span class="material-icons-sharp">group</span>
+                    <h3>Groups</h3>
                 </a>
                 <a href="../Tables/tables.html">
                     <span class="material-icons-sharp">
@@ -51,19 +56,19 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html">
+                <a href="../categorys/category.html" class="active">
                     <span class="material-icons-sharp">
                         category
                     </span>
                     <h3>Category</h3>
                 </a>
-                <a href="../products/products.html" >
+                <a href="../products/products.html">
                     <span class="material-icons-sharp">
                         inventory_2
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html" >
+                <a href="../products/addproduct.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -76,7 +81,7 @@
                     <h3>Orders</h3>
                     <span class="message-count">27</span>
                 </a>
-                <a href="../Orders/addorder.html"  class="active">
+                <a href="../Orders/addorder.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -94,7 +99,7 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                
+
                 <a href="../../login.html">
                     <span class="material-icons-sharp">
                         logout
@@ -107,12 +112,54 @@
 
         <!-- Main Content -->
         <main>
-            
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
+    <div class="form-container">
+        <div class="manage-users-container">
+            <div class="form-group">
+                <label for="table">Table</label>
+                <select id="table" name="table" class="form-control">
+                    <!-- Options will be dynamically added here -->
+                </select>
+            </div>
+            <div id="product-container">
+                <div class="form-group">
+                    <label for="product">Product</label>
+                    
+                    <span class="material-icons-sharp add-product-btn">add</span>
+                </div>
+            </div>
+            <div id="order-list">
+                <!-- Dynamically added products will appear here -->
+            </div>
+            <div class="totals">
+                <div class="form-group">
+                    <label for="gross-amount">Gross Amount</label>
+                    <input type="text" id="gross-amount" name="gross-amount" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="s-charge">S-Charge 3%</label>
+                    <input type="text" id="s-charge" name="s-charge" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="vat">VAT 13%</label>
+                    <input type="text" id="vat" name="vat" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount</label>
+                    <input type="text" id="discount" name="discount" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="net-amount">Net Amount</label>
+                    <input type="text" id="net-amount" name="net-amount" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="button-container">
+                <button id="create-order-btn" class="submit-btn">Create Order</button>
+            </div>
+        </div>
+    </div>
+</main>
         
-        </main>
+        
         <!-- End of Main Content -->
         
         <!-- Right Section -->
@@ -213,8 +260,7 @@
         </div>
         
 
-    <script src="./assest/scripts/orders.js"></script>
-    <script src="./assest/scripts/index.js"></script>
+        <script src="../../assets/scripts/add_order.js"></script>
 </body>
 
 </html>

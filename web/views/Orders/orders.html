@@ -27,7 +27,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html" >
+                <a href="../Dashboard/index.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -39,11 +39,15 @@
                     </span>
                     <h3>Users</h3>
                 </a>
-                <a href="../users/adduser.html" >
+                <a href="../users/adduser.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New Users</h3>
+                </a>
+                <a href="../groups/group.html" class="active">
+                    <span class="material-icons-sharp">group</span>
+                    <h3>Groups</h3>
                 </a>
                 <a href="../Tables/tables.html">
                     <span class="material-icons-sharp">
@@ -51,25 +55,25 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html">
+                <a href="../categorys/category.html" class="active">
                     <span class="material-icons-sharp">
                         category
                     </span>
                     <h3>Category</h3>
                 </a>
-                <a href="../products/products.html" >
+                <a href="../products/products.html">
                     <span class="material-icons-sharp">
                         inventory_2
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html" >
+                <a href="../products/addproduct.html">
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html"  class="active">
+                <a href="../Orders/orders.html">
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
@@ -94,7 +98,7 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                
+
                 <a href="../../login.html">
                     <span class="material-icons-sharp">
                         logout
@@ -114,7 +118,16 @@
         
         </main>
         <!-- End of Main Content -->
-        
+        <div class="form-group">
+            <label for="product">Product</label>
+            <select id="product" name="product" class="form-control">
+                <option value="crispy-chicken-tacos">Crispy Chicken Tacos</option>
+                <option value="grilled-cheese-sandwich">Grilled Cheese Sandwich</option>
+                <!-- Add more product options as needed -->
+            </select>
+            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Quantity" min="1" step="1">
+            <button id="add-product-btn" class="material-icons-sharp">add</button>
+        </div>
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">

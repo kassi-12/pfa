@@ -47,6 +47,10 @@
                     </span>
                     <h3>New Users</h3>
                 </a>
+                <a href="../groups/group.html" class="active">
+                    <span class="material-icons-sharp">group</span>
+                    <h3>Groups</h3>
+                </a>
                 <a href="../Tables/tables.html">
                     <span class="material-icons-sharp">
                         table_restaurant
@@ -108,86 +112,60 @@
         <!-- End of Sidebar Section -->
 
         <!-- Main Content -->
-        <main>
-            <!-- Analyses -->
-            <div class="form-container">
-                <div class="manage-users-container">
-                    <div class="form-group">
-                        Show
-                        <select id="category">
-                            <option value="4">4</option>
-                            <!-- More options can be added here -->
-                        </select>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Category name</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>donna</td>
-                                <td>7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>veronica</td>
-                                <td>7850002680</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>kenny</td>
-                                <td>7545554540</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="form-container">
-                        <div class="form-left">
-                            <div class="form-group">
-                                <label for="table-name">Category Name</label>
-                                <input type="text" id="table-name" name="table-name">
+        
+            <main>
+                <div class="form-container">
+                    <div class="manage-users-container">
+                        <div class="form-group">
+                            Show
+                            <select id="category-count">
+                                <option value="4">4</option>
+                                <!-- More options can be added here -->
+                            </select>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="category-data">
+                                <!-- Category data will be inserted here -->
+                            </tbody>
+                        </table>
+                        <div class="form-container">
+                            <div class="form-left">
+                                <div class="form-group">
+                                    <label for="category-name">Category Name</label>
+                                    <input type="text" id="category-name" name="category-name">
+                                </div>
                             </div>
-
-                        </div>
-                        <div class="form-right">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select id="status" name="status">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
+                            <div class="form-right">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select id="status" name="status">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
                             </div>
-
+                            <div class="button-container">
+                                <button class="submit-btn" id="submit-category-btn" onclick="submitCategory()">ADD</button>
+                            </div>
                         </div>
-                        <div class="button-container">
-                            <button class="submit-btn">Submit</button>
+                        <div class="pagination-container">
+                            Showing 1 of 1 entries
+                            <ul class="pagination">
+                                <li><a href="#">Previous</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="pagination-container">
-                        Showing 1 of 1 entries
-                        <ul class="pagination">
-                            <li><a href="#">Previous</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
@@ -288,7 +266,7 @@
         </div>
 
 
-        <script src="./assest/scripts/orders.js"></script>
+        <script src="../../assets/scripts/category.js"></script>
 
     </div>
 </body>
