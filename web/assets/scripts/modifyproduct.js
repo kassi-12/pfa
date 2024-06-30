@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('category').value = product.category_id;
             document.getElementById('price').value = product.price;
             document.getElementById('description').value = product.description;
+            document.getElementById('quantity').value = product.quantity;
             document.querySelector(`input[name="active"][value="${product.active ? 'yes' : 'no'}"]`).checked = true;
         } catch (error) {
             console.error('Error fetching product details:', error);
@@ -41,10 +42,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const category_id = document.getElementById('category').value;
         const price = document.getElementById('price').value;
         const description = document.getElementById('description').value;
+        const quantity = document.getElementById('quantity').value;
         const active = document.querySelector('input[name="active"]:checked').value === 'yes';
 
         try {
-            const response = await eel.modify_product(productId, name, category_id, price, description, active)();
+            const response = await eel.modify_product(productId, name, category_id, price, description, active, quantity)();
             // Redirect or show a success message
             window.location.href = './products.html';
         } catch (error) {

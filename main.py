@@ -91,34 +91,43 @@ def fetch_tables():
         if conn:
             conn.close()
 
+# Mapping category text values to numeric IDs
+category_map = {
+    'appetizer': 1,
+    'main-course': 2,
+    'dessert': 3,
+    'beverage': 4
+}
+
 @eel.expose
-def add_product(name, category_id, price, status, action):
+def add_product(name, category, price, description, active, quantity):
     try:
+        category_id = category_map.get(category.lower())
+        if category_id is None:
+            raise ValueError(f"Invalid category: {category}")
+
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('''
-            INSERT INTO products (name, category_id, price, description, active)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (name, category_id, price, status, action))
+        cursor.execute('INSERT INTO products (name, category_id, price, description, active, quantity) VALUES (?, ?, ?, ?, ?, ?)', 
+                       (name, category_id, price, description, active, quantity))
         conn.commit()
         logging.info(f"Product {name} added successfully!")
         return "Product added successfully!"
-    except sqlite3.IntegrityError:
-        logging.warning("Product already exists!")
-        return "Product already exists!"
     except Exception as e:
         logging.error(f"An error occurred while adding product {name}: {e}")
         return f"An error occurred: {e}"
     finally:
         if conn:
             conn.close()
+
+
 #implement the fetch_products function
 @eel.expose
 def fetch_products():
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('SELECT id, name, category_id, price, description, active FROM products')
+        cursor.execute('SELECT id, name, category_id, price, description, active, quantity FROM products')
         products = cursor.fetchall()
         logging.info("Products fetched successfully!")
         return products
@@ -150,7 +159,7 @@ def fetch_product_details(product_id):
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('SELECT id, name, category_id, price, description, active FROM products WHERE id = ?', (product_id,))
+        cursor.execute('SELECT id, name, category_id, price, description, active, quantity FROM products WHERE id = ?', (product_id,))
         product = cursor.fetchone()
         if product:
             return {
@@ -159,7 +168,8 @@ def fetch_product_details(product_id):
                 'category_id': product[2],
                 'price': product[3],
                 'description': product[4],
-                'active': bool(product[5])
+                'active': bool(product[5]),
+                'quantity': product[6]
             }
         else:
             return None
@@ -171,14 +181,14 @@ def fetch_product_details(product_id):
             conn.close()
 
 @eel.expose
-def modify_product(product_id, name, category_id, price, description, active):
+def modify_product(product_id, name, category_id, price, description, active, quantity):
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
         product = cursor.fetchone()
         if product:
-            cursor.execute('UPDATE products SET name = ?, category_id = ?, price = ?, description = ?, active = ? WHERE id = ?', (name, category_id, price, description, active, product_id))
+            cursor.execute('UPDATE products SET name = ?, category_id = ?, price = ?, description = ?, active = ?, quantity = ? WHERE id = ?', (name, category_id, price, description, active, quantity, product_id))
             conn.commit()
             logging.info(f"Product {product_id} modified successfully!")
             return "Product modified successfully!"
