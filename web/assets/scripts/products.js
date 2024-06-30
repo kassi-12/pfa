@@ -62,11 +62,15 @@ async function fetchProducts() {
             deleteButton.addEventListener('click', async () => {
                 const productId = row.cells[0].textContent;
 
-                try {
-                    await eel.delete_product(productId)();
-                    row.remove();
-                } catch (error) {
-                    console.error('Error deleting product:', error);
+                // Ask user for confirmation
+                const confirmDelete = confirm('Are you sure you want to delete this product?');
+                if (confirmDelete) {
+                    try {
+                        await eel.delete_product(productId)();
+                        row.remove();
+                    } catch (error) {
+                        console.error('Error deleting product:', error);
+                    }
                 }
             });
         });
