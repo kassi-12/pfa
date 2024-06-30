@@ -47,6 +47,8 @@ def create_db():
             s_charge REAL NOT NULL,
             vat REAL NOT NULL,
             discount REAL DEFAULT 0,
+            method TEXT,
+            status TEXT NOT NULL,
             net_amount REAL NOT NULL
         )
     ''')
@@ -106,7 +108,16 @@ def create_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         group_name TEXT NOT NULL
     )''')
-
+    
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS stock (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            item_name TEXT NOT NULL,
+            quantity INTEGER NOT NULL,
+            unit TEXT,
+            price_per_unit REAL
+        )
+    ''')
 
     # Commit changes and close connection
     conn.commit()

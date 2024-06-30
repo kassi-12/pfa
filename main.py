@@ -3,7 +3,8 @@ import sqlite3
 import os
 import logging
 import webview
-
+import datetime
+from collections import defaultdict
 # Configure logging
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -44,7 +45,7 @@ def fetch_users():
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('SELECT id,username, email, first_name, last_name, phone FROM users')
+        cursor.execute('SELECT id,username, email, first_name, last_name, phone,group_id FROM users')
         users = cursor.fetchall()
         logging.info("Users fetched successfully!")
         return users
@@ -354,6 +355,236 @@ def fetch_products():
         if conn:
             conn.close()
 
+
+@eel.expose
+def add_order_items(order_id, order_items):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        for item in order_items:
+            cursor.execute('INSERT INTO order_items (order_id, product_id, quantity, item_total) VALUES (?, ?, ?, ?)',
+                           (order_id, item['productID'], item['quantity'], item['itemTotal']))
+        conn.commit()
+        logging.info("Order items added successfully!")
+        return True
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"An error occurred while adding order items: {e}")
+        return False
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def fetch_orders():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM orders')
+        orders = cursor.fetchall()
+        logging.info("Orders fetched successfully!")
+        return orders
+    except Exception as e:
+        logging.error(f"An error occurred while fetching orders: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def fetch_orders_paid():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT order_time,net_amount FROM orders WHERE status="Paid"')
+        orders = cursor.fetchall()
+        logging.info("Orders fetched successfully!")
+        return orders
+    except Exception as e:
+        logging.error(f"An error occurred while fetching orders: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def update_order(id, method, status):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE orders SET method=?, status=? WHERE id=?', (method, status, id))
+        conn.commit()
+        logging.info("Order updated successfully!")
+        return "Order updated successfully!"
+    except Exception as e:
+        logging.error(f"An error occurred while updating order: {e}")
+        return f"Error: {e}"
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def add_order(table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO orders (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status))
+        order_id = cursor.lastrowid
+        conn.commit()
+        logging.info(f"Order {order_id} added successfully!")
+        return order_id
+    except Exception as e:
+        logging.error(f"An error occurred while adding order: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def download_order(id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT o.id, t.table_name, u.username, o.gross_amount, o.s_charge, o.vat, o.discount, o.net_amount, o.method, o.status
+            FROM orders o
+            INNER JOIN tables t ON o.table_id = t.id
+            INNER JOIN users u ON o.user_id = u.id
+            WHERE o.id=?
+        ''', (id,))
+        order = cursor.fetchone()
+        
+        if order:
+            order_id, table_name, username, gross_amount, s_charge, vat, discount, net_amount, method, status = order
+            
+            order_data = (
+                f"Order Number: {order_id}\n"
+                f"Table Name: {table_name}\n"
+                f"User Name: {username}\n"
+                f"Gross Amount: {gross_amount}\n"
+                f"S-Charge: {s_charge}\n"
+                f"VAT: {vat}\n"
+                f"Discount: {discount}\n"
+                f"Net Amount: {net_amount}\n"
+                f"Method: {method}\n"
+                f"Status: {status}"
+            )
+            
+            documents_folder = os.path.join(os.path.expanduser('~'), 'Documents')
+            file_path = os.path.join(documents_folder, f"order_{id}.txt")
+            
+            with open(file_path, "w") as file:
+                file.write(order_data)
+            
+            logging.info(f"Order {id} downloaded successfully!")
+            return file_path
+        else:
+            logging.error(f"No order found with ID: {id}")
+            return None
+    except Exception as e:
+        logging.error(f"An error occurred while downloading order: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def fetch_orders_status():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM orders WHERE status IN ("In Progress", "Not Paid")')
+        orders = cursor.fetchall()
+        logging.info("Orders fetched successfully!")
+        logging.info(f"Fetched orders: {orders}")  # Log fetched orders for debugging
+        return orders
+    except Exception as e:
+        logging.error(f"An error occurred while fetching orders: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def fetch_company_settings():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM company WHERE id = 1')  # Assuming there's only one row for company settings
+        settings = cursor.fetchone()
+        logging.info("Company settings fetched successfully!")
+        return settings
+    except Exception as e:
+        logging.error(f"An error occurred while fetching company settings: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def insert_company_settings(settings):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO company (name, language, theme, restaurant_name, address, phone, currency, timezone, tax_rate)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', settings)
+        conn.commit()
+        logging.info("Company settings inserted successfully!")
+    except Exception as e:
+        logging.error(f"An error occurred while inserting company settings: {e}")
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def update_company_settings(settings):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            UPDATE company
+            SET name = ?, language = ?, theme = ?, restaurant_name = ?, address = ?, phone = ?, currency = ?, timezone = ?, tax_rate = ?
+            WHERE id = 1
+        ''', settings)
+        conn.commit()
+        logging.info("Company settings updated successfully!")
+    except Exception as e:
+        logging.error(f"An error occurred while updating company settings: {e}")
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def get_table_name_by_id(table_id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT table_name FROM tables WHERE id = ?', (table_id,))
+        table_name = cursor.fetchone()
+        logging.info(f"Table name for ID {table_id} fetched successfully!")
+        return table_name[0] if table_name else None
+    except Exception as e:
+        logging.error(f"An error occurred while fetching table name for ID {table_id}: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+# Function to calculate total earnings for the current year
+@eel.expose
+def fetch_group_by_id(group_id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT group_name FROM groups WHERE id = ?', (group_id,))
+        group_name = cursor.fetchone()
+        logging.info("Group fetched successfully!")
+        return group_name[0] if group_name else 'Unknown'
+    except Exception as e:
+        logging.error(f"An error occurred while fetching group: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
 
 eel.start("login.html", size=(1920, 1080))
 # # Start the Eel application

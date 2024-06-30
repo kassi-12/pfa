@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
     <script type="text/javascript" src="/eel.js"></script>
@@ -73,13 +76,41 @@
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html">
+                <a href="../Orders/orders.html" id="orders-link">
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
-                    <span class="message-count">27</span>
+                    <span class="message-count" id="order-count" style="display: none;"></span>
                 </a>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        updateOrderCount();
+                    });
+                
+                    async function updateOrderCount() {
+                        try {
+                            const response = await eel.fetch_orders_status()();
+                            console.log('Fetched orders:', response); 
+                            const orderCount = response.length;
+                
+                            console.log('Order count:', orderCount);
+                
+                            const orderCountElement = document.getElementById('order-count');
+                            
+                            if (orderCount > 0) {
+                                orderCountElement.textContent = orderCount;
+                                orderCountElement.style.display = 'inline-block'; 
+                            } else {
+                                orderCountElement.style.display = 'none'; 
+                            }
+                        } catch (error) {
+                            console.error('Error updating order count:', error);
+                        }
+                    }
+                </script>               
+                
                 <a href="../Orders/addorder.html">
                     <span class="material-icons-sharp">
                         add
@@ -111,23 +142,75 @@
 
         <!-- Main Content -->
         <main>
-            
-            <!-- Analyses -->
-           
-            <!-- End of Recent Orders -->
-        
+            <div class="form-container">
+                <div class="manage-users-container">
+                    <div class="form-group">
+                        Show
+                        <select id="order-count">
+                            <option value="4">4</option>
+                            <!-- More options can be added here -->
+                        </select>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-data">
+                            <!-- Order data will be inserted here -->
+                        </tbody>
+                    </table>
+                    <div class="form-container">
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="order-number">Order Number</label>
+                                <input type="text" id="order-number" name="order-number" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment">Payment</label>
+                                <select id="payment" name="payment">
+                                    
+
+                                    <option value="Cash">Cash</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Visa">Visa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-right">
+                            
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" name="status" >
+                                    
+                                    <option value="Paid">Paid</option>
+                                    <option value="Not Paid">Not Paid</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Cancel">Cancel</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button class="submit-btn" id="submit-order-btn" onclick="">Done</button>
+                        </div>
+                    </div>
+                    <div class="pagination-container">
+                        Showing 1 of 1 entries
+                        <ul class="pagination">
+                            <li><a href="#">Previous</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
         <!-- End of Main Content -->
-        <div class="form-group">
-            <label for="product">Product</label>
-            <select id="product" name="product" class="form-control">
-                <option value="crispy-chicken-tacos">Crispy Chicken Tacos</option>
-                <option value="grilled-cheese-sandwich">Grilled Cheese Sandwich</option>
-                <!-- Add more product options as needed -->
-            </select>
-            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Quantity" min="1" step="1">
-            <button id="add-product-btn" class="material-icons-sharp">add</button>
-        </div>
+        
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
@@ -226,8 +309,7 @@
         </div>
         
 
-    <script src="./assest/scripts/orders.js"></script>
-    <script src="./assest/scripts/index.js"></script>
+        <script src="../../assets/scripts/order.js"></script>
 </body>
 
 </html>

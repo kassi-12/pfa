@@ -132,7 +132,7 @@ aside .toggle{
     align-items: center;
     justify-content: space-between;
     margin-top: 1.4rem;
-    bottom: auto;
+    bottom: 5rem;
 }
 
 aside .toggle .logo{

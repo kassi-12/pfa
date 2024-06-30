@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
     <script type="text/javascript" src="/eel.js"></script>
@@ -18,7 +20,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Settings</h2>
+                <h1>Category</h1>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -110,72 +112,62 @@
         <!-- End of Sidebar Section -->
 
         <!-- Main Content -->
-        <main>
-            <div class="form-container">
-                <div class="manage-users-container">
-                    <h2>General Settings</h2>
-                    <div class="form-left">
+        
+            <main>
+                <div class="form-container">
+                    <div class="manage-users-container">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="language">Language</label>
-                            <select id="language">
-                                <option value="en">English</option>
-                                <option value="es">Spanish</option>
-                                <option value="fr">French</option>
+                            Show
+                            <select id="category-count">
+                                <option value="4">4</option>
+                                <!-- More options can be added here -->
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="theme">Theme</label>
-                            <select id="theme">
-                                <option value="light">Light</option>
-                                <option value="dark">Dark</option>
-                            </select>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="category-data">
+                                <!-- Category data will be inserted here -->
+                            </tbody>
+                        </table>
+                        <div class="form-container">
+                            <div class="form-left">
+                                <div class="form-group">
+                                    <label for="category-name">Category Name</label>
+                                    <input type="text" id="category-name" name="category-name">
+                                </div>
+                            </div>
+                            <div class="form-right">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select id="status" name="status">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="button-container">
+                                <button class="submit-btn" id="submit-category-btn" onclick="submitCategory()">ADD</button>
+                            </div>
                         </div>
-                    </div>
-                    <h2>Restaurant Settings</h2>
-                    <div class="form-left">
-                        <div class="form-group">
-                            <label for="restaurant-name">Restaurant Name</label>
-                            <input type="text" id="restaurant-name" placeholder="Enter your restaurant name">
+                        <div class="pagination-container">
+                            Showing 1 of 1 entries
+                            <ul class="pagination">
+                                <li><a href="#">Previous</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
                         </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea id="address" rows="4" placeholder="Enter your restaurant address"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" id="phone" placeholder="Enter your restaurant phone number">
-                        </div>
-                    </div>
-                    <div class="form-right">
-                        <div class="form-group">
-                            <label for="currency">Currency</label>
-                            <input type="text" id="currency" placeholder="Enter your currency">
-                        </div>
-                        <div class="form-group">
-                            <label for="timezone">Timezone</label>
-                            <select id="timezone">
-                                <option value="gmt">GMT</option>
-                                <option value="est">EST</option>
-                                <option value="pst">PST</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="tax-rate">Tax Rate (%)</label>
-                            <input type="number" id="tax-rate" placeholder="Enter your tax rate">
-                        </div>
-                    </div>
-                    <div class="button-container">
-                        <button class="submit-btn" onclick="handleUpdate()">UPDATE</button>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
         <!-- End of Main Content -->
-        
+
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
@@ -192,7 +184,7 @@
                         dark_mode
                     </span>
                 </div>
-        
+
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b>Kassimi</b></p>
@@ -202,10 +194,10 @@
                         <img src="../../images/profile-1.jpg" alt="Admin profile picture">
                     </div>
                 </div>
-        
+
             </div>
             <!-- End of Nav -->
-        
+
             <div class="user-profile">
                 <div class="logo">
                     <img src="../../images/logo.png" alt="Company logo">
@@ -213,7 +205,7 @@
                     <p>The Best for The Best</p>
                 </div>
             </div>
-        
+
             <div class="reminders">
                 <div class="header">
                     <h2>Reminders</h2>
@@ -221,7 +213,7 @@
                         notifications_none
                     </span>
                 </div>
-        
+
                 <div class="notification">
                     <div class="icon">
                         <span class="material-icons-sharp">
@@ -240,7 +232,7 @@
                         </span>
                     </div>
                 </div>
-        
+
                 <div class="notification deactive">
                     <div class="icon">
                         <span class="material-icons-sharp">
@@ -259,7 +251,7 @@
                         </span>
                     </div>
                 </div>
-        
+
                 <div class="notification add-reminder">
                     <div>
                         <span class="material-icons-sharp">
@@ -268,13 +260,15 @@
                         <h3>Add Reminder</h3>
                     </div>
                 </div>
-        
-            </div>
-        
-        </div>
-        
 
-        <script src="../../assets/scripts/setting.js"></script>
+            </div>
+
+        </div>
+
+
+        <script src="../../assets/scripts/category.js"></script>
+
+    </div>
 </body>
 
 </html>

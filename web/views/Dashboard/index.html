@@ -33,6 +33,12 @@
                     </span>
                     <h3>Dashboard</h3>
                 </a>
+                <a href="../stock/stock.html">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                    <h3>Stock</h3>
+                </a>
                 <a href="../users/users.html">
                     <span class="material-icons-sharp">
                         person
@@ -218,37 +224,24 @@
             <div class="new-users">
                 <h2>Users</h2>
                 <div class="user-list">
+                    <!-- Users will be dynamically inserted here -->
                     <div class="user">
-                        <img src="../../images/profile-2.jpg" alt="User profile picture">
-                        <h2>Jack</h2>
-                        <p>54 Min Ago</p>
-                    </div>
-                    <div class="user">
-                        <img src="../../images/profile-3.jpg" alt="User profile picture">
-                        <h2>Amir</h2>
-                        <p>3 Hours Ago</p>
-                    </div>
-                    <div class="user">
-                        <img src="../../images/profile-4.jpg" alt="User profile picture">
-                        <h2>Ember</h2>
-                        <p>6 Hours Ago</p>
-                    </div>
-                    <div class="user">
-                        <img src="../../images/plus.png" alt="Add more users">
+                        <a href="../users/adduser.html">
+                            <img src="../../images/plus.png" alt="Add more users">
+                        </a>
                         <h2>More</h2>
                         <p>New User</p>
                     </div>
                 </div>
             </div>
             <!-- End of New Users Section -->
-
+            
             <!-- Recent Orders Table -->
             <div class="recent-orders">
                 <h2>Recent Orders</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Order Name</th>
                             <th>Order Number</th>
                             <th>Table</th>
                             <th>Payment</th>
@@ -257,10 +250,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <
+                        <!-- Orders will be dynamically inserted here -->
                     </tbody>
                 </table>
-                <a href="#">Show All</a>
+                <a href="../Orders/orders.html">Show All</a>
             </div>
             <!-- End of Recent Orders -->
 
@@ -368,6 +361,7 @@
     </div> <!-- End of container -->
 
     <script type="text/javascript" src="/eel.js"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
 
 </body>
 
