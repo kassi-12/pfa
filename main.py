@@ -586,6 +586,131 @@ def fetch_group_by_id(group_id):
         if conn:
             conn.close()
 
+@eel.expose
+def fetch_analysis_data():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        # Fetch total earnings of the year
+        cursor.execute('SELECT SUM(net_amount) FROM orders WHERE strftime("%Y", order_time) = strftime("%Y", "now")')
+        total_earnings = cursor.fetchone()[0] or 0
+
+        # Fetch total paid orders of the month
+        cursor.execute('SELECT COUNT(*) FROM orders WHERE status="Paid"')
+        total_paid_orders = cursor.fetchone()[0] or 0
+
+        # Fetch total food products
+        cursor.execute('SELECT COUNT(*) FROM products')
+        total_food_products = cursor.fetchone()[0] or 0
+
+        # Fetch total food categories
+        cursor.execute('SELECT COUNT(*) FROM category')
+        total_food_category = cursor.fetchone()[0] or 0
+
+        # Fetch total unpaid orders
+        cursor.execute('SELECT COUNT(*) FROM orders WHERE status="Not Paid"')
+        total_unpaid_orders = cursor.fetchone()[0] or 0
+
+        # Fetch total orders
+        cursor.execute('SELECT COUNT(*) FROM orders')
+        total_orders = cursor.fetchone()[0] or 0
+
+        # Calculate percentages (example calculation, you can adjust as needed)
+        total_earnings_percentage = (total_earnings / 100000) * 100
+        total_paid_orders_percentage = (total_paid_orders / 1000) * 100
+        total_food_products_percentage = (total_food_products / 5000) * 100
+        total_food_category_percentage = (total_food_category / 100) * 100
+        total_unpaid_orders_percentage = (total_unpaid_orders / 1000) * 100
+        total_orders_percentage = (total_orders / 1000) * 100
+
+        data = {
+            "totalEarnings": total_earnings,
+            "totalPaidOrders": total_paid_orders,
+            "totalFoodProducts": total_food_products,
+            "totalFoodCategory": total_food_category,
+            "totalUnPaidOrders": total_unpaid_orders,
+            "totalOrders": total_orders,
+            "totalEarningsPercentage": total_earnings_percentage,
+            "totalPaidOrdersPercentage": total_paid_orders_percentage,
+            "totalFoodProductsPercentage": total_food_products_percentage,
+            "totalFoodCategoryPercentage": total_food_category_percentage,
+            "totalUnPaidOrdersPercentage": total_unpaid_orders_percentage,
+            "totalOrdersPercentage": total_orders_percentage
+        }
+
+        return data
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+        return {}
+@eel.expose
+def add_stock_item(item_name, quantity, unit, price_per_unit):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO stock (item_name, quantity, unit, price_per_unit) VALUES (?, ?, ?, ?)',
+                       (item_name, quantity, unit, price_per_unit))
+        conn.commit()
+        logging.info("Stock item added successfully!")
+        return True
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"An error occurred while adding stock item: {e}")
+        return False
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def fetch_stock():
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM stock')
+        stock_items = cursor.fetchall()
+        logging.info("Stock items fetched successfully!")
+        return stock_items
+    except Exception as e:
+        logging.error(f"An error occurred while fetching stock items: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def update_stock_item(id, item_name, quantity, unit, price_per_unit):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE stock SET item_name=?, quantity=?, unit=?, price_per_unit=? WHERE id=?',
+                       (item_name, quantity, unit, price_per_unit, id))
+        conn.commit()
+        logging.info("Stock item updated successfully!")
+        return True
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"An error occurred while updating stock item: {e}")
+        return False
+    finally:
+        if conn:
+            conn.close()
+
+@eel.expose
+def delete_stock_item(id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM stock WHERE id=?', (id,))
+        conn.commit()
+        logging.info("Stock item deleted successfully!")
+        return True
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"An error occurred while deleting stock item: {e}")
+        return False
+    finally:
+        if conn:
+            conn.close()
 eel.start("login.html", size=(1920, 1080))
 # # Start the Eel application
 # def start_app():

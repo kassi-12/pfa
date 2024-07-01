@@ -20,7 +20,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Category</h1>
+                <h1>Stock</h1>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -35,6 +35,12 @@
                     </span>
                     <h3>Dashboard</h3>
                 </a>
+                <a href="../stock/stock.html" class="active">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                    <h3>Stock</h3>
+                </a>
                 <a href="../users/users.html">
                     <span class="material-icons-sharp">
                         person
@@ -47,7 +53,7 @@
                     </span>
                     <h3>New Users</h3>
                 </a>
-                <a href="../groups/group.html" class="active">
+                <a href="../groups/group.html">
                     <span class="material-icons-sharp">group</span>
                     <h3>Groups</h3>
                 </a>
@@ -57,7 +63,7 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html" class="active">
+                <a href="../categorys/category.html" >
                     <span class="material-icons-sharp">
                         category
                     </span>
@@ -69,20 +75,48 @@
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html">
+                <a href="../products/addproduct.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html">
+                <a href="../Orders/orders.html" id="orders-link" >
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
-                    <span class="message-count">27</span>
+                    <span class="message-count" id="order-count" style="display: none;"></span>
                 </a>
-                <a href="../Orders/addorder.html">
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        updateOrderCount();
+                    });
+                
+                    async function updateOrderCount() {
+                        try {
+                            const response = await eel.fetch_orders_status()();
+                            console.log('Fetched orders:', response); 
+                            const orderCount = response.length;
+                
+                            console.log('Order count:', orderCount);
+                
+                            const orderCountElement = document.getElementById('order-count');
+                            
+                            if (orderCount > 0) {
+                                orderCountElement.textContent = orderCount;
+                                orderCountElement.style.display = 'inline-block'; 
+                            } else {
+                                orderCountElement.style.display = 'none'; 
+                            }
+                        } catch (error) {
+                            console.error('Error updating order count:', error);
+                        }
+                    }
+                </script>               
+                
+                <a href="../Orders/addorder.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -113,59 +147,69 @@
 
         <!-- Main Content -->
         
-            <main>
-                <div class="form-container">
-                    <div class="manage-users-container">
-                        <div class="form-group">
-                            Show
-                            <select id="category-count">
-                                <option value="4">4</option>
-                                <!-- More options can be added here -->
-                            </select>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="category-data">
-                                <!-- Category data will be inserted here -->
-                            </tbody>
-                        </table>
-                        <div class="form-container">
-                            <div class="form-left">
-                                <div class="form-group">
-                                    <label for="category-name">Category Name</label>
-                                    <input type="text" id="category-name" name="category-name">
-                                </div>
-                            </div>
-                            <div class="form-right">
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select id="status" name="status">
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="button-container">
-                                <button class="submit-btn" id="submit-category-btn" onclick="submitCategory()">ADD</button>
+        <main>
+            <div class="form-container">
+                <div class="manage-users-container">
+                    <div class="form-group">
+                        Show
+                        <select id="category-count">
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="category-data">
+                            <!-- Category data will be inserted here -->
+                        </tbody>
+                    </table>
+                    <div class="form-container">
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="item-name">Name</label>
+                                <input type="text" id="item-name" name="item-name">
                             </div>
                         </div>
-                        <div class="pagination-container">
-                            Showing 1 of 1 entries
-                            <ul class="pagination">
-                                <li><a href="#">Previous</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="item-quantity">Quantity</label>
+                                <input type="number" id="item-quantity" name="item-quantity" step="0.5">
+                            </div>
+                        </div>
+                        <div class="form-right">
+                            <div class="form-group">
+                                <label for="item-unit">Unit</label>
+                                <input type="text" id="item-unit" name="item-unit">
+                            </div>
+                        </div>
+                        <div class="form-right">
+                            <div class="form-group">
+                                <label for="item-price">Price</label>
+                                <input type="text" id="item-price" name="item-price">
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button class="submit-btn" id="submit-category-btn" onclick="submitStock()">ADD</button>
                         </div>
                     </div>
+                    <div class="pagination-container">
+                        Showing 1 of 1 entries
+                        <ul class="pagination">
+                            <li><a href="#">Previous</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </main>
+            </div>
+        </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
@@ -266,7 +310,7 @@
         </div>
 
 
-        <script src="../../assets/scripts/category.js"></script>
+        <script src="../../assets/scripts/stock.js"></script>
 
     </div>
 </body>

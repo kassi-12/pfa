@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/style.css"> <!-- Adjust the path as needed -->
     <title>RMS</title>
-    <style>
-        /* Additional styles can be added here if necessary */
-    </style>
+    
 </head>
 
 <body>
@@ -18,16 +16,16 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Orders</h1> <!-- Changed from </h2> to </h1> -->
-                <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">
+                <h1>Dashboard</h1>
+                <div class="close" id="close-btn" >
+                    <span class="material-icons-sharp" >
                         close
                     </span>
                 </div>
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html">
+                <a href="../Dashboard/index.html" class="active">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -51,7 +49,7 @@
                     </span>
                     <h3>New Users</h3>
                 </a>
-                <a href="../groups/group.html" class="active">
+                <a href="../groups/group.html">
                     <span class="material-icons-sharp">group</span>
                     <h3>Groups</h3>
                 </a>
@@ -61,7 +59,7 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html" class="active">
+                <a href="../categorys/category.html" >
                     <span class="material-icons-sharp">
                         category
                     </span>
@@ -73,20 +71,48 @@
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html">
+                <a href="../products/addproduct.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html">
+                <a href="../Orders/orders.html" id="orders-link" >
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
-                    <span class="message-count">27</span>
+                    <span class="message-count" id="order-count" style="display: none;"></span>
                 </a>
-                <a href="../Orders/addorder.html">
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        updateOrderCount();
+                    });
+                
+                    async function updateOrderCount() {
+                        try {
+                            const response = await eel.fetch_orders_status()();
+                            console.log('Fetched orders:', response); 
+                            const orderCount = response.length;
+                
+                            console.log('Order count:', orderCount);
+                
+                            const orderCountElement = document.getElementById('order-count');
+                            
+                            if (orderCount > 0) {
+                                orderCountElement.textContent = orderCount;
+                                orderCountElement.style.display = 'inline-block'; 
+                            } else {
+                                orderCountElement.style.display = 'none'; 
+                            }
+                        } catch (error) {
+                            console.error('Error updating order count:', error);
+                        }
+                    }
+                </script>               
+                
+                <a href="../Orders/addorder.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -124,14 +150,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>Total Earnings</h3>
-                            <h1>$65,024</h1>
+                            <h1 id="totalEarnings">$0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="earningsCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+81%</p>
+                                <p id="earningsPercentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -140,14 +166,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>Total Paid Orders</h3>
-                            <h1>$65,024</h1>
+                            <h1 id="totalPaidOrders">0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="paidOrdersCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+81%</p>
+                                <p id="paidOrdersPercentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -156,14 +182,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>Food Products</h3>
-                            <h1>24,981</h1>
+                            <h1 id="totalFoodProducts">0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="foodProductsCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>-48%</p>
+                                <p id="foodProductsPercentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -172,14 +198,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>Food Category</h3>
-                            <h1>14,147</h1>
+                            <h1 id="totalFoodCategory">0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="foodCategoryCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+21%</p>
+                                <p id="foodCategoryPercentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -188,14 +214,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>UnPaid Orders</h3>
-                            <h1>10,567</h1>
+                            <h1 id="totalUnPaidOrders">0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="unpaidOrdersCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+12%</p>
+                                <p id="unpaidOrdersPercentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -204,14 +230,14 @@
                     <div class="status">
                         <div class="info">
                             <h3>Total Orders</h3>
-                            <h1>38,254</h1>
+                            <h1 id="totalOrders">0</h1>
                         </div>
                         <div class="progresss">
                             <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
+                                <circle id="totalOrdersCircle" cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+45%</p>
+                                <p id="totalOrdersPercentage">0%</p>
                             </div>
                         </div>
                     </div>

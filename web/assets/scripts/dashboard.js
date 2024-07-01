@@ -63,8 +63,7 @@ async function displayUsers() {
 }
 
 
-// Function to fetch and display orders
-// Function to fetch and display orders
+
 async function displayOrders() {
     try {
         let orders = await eel.fetch_orders()();
@@ -108,7 +107,41 @@ async function displayOrders() {
         console.error('Error fetching or displaying orders:', error);
     }
 }
+function updateProgressCircle(elementId, percentage) {
+    const circle = document.getElementById(elementId);
+    const radius = circle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (percentage / 100) * circumference;
+    circle.style.strokeDashoffset = offset;
+}
 
+async function fetchData() {
+    const response = await eel.fetch_analysis_data()();
+    const data = response;
+
+    document.getElementById("totalEarnings").innerText = `$${data.totalEarnings}`;
+    document.getElementById("totalPaidOrders").innerText = `$${data.totalPaidOrders}`;
+    document.getElementById("totalFoodProducts").innerText = `${data.totalFoodProducts}`;
+    document.getElementById("totalFoodCategory").innerText = `${data.totalFoodCategory}`;
+    document.getElementById("totalUnPaidOrders").innerText = `${data.totalUnPaidOrders}`;
+    document.getElementById("totalOrders").innerText = `${data.totalOrders}`;
+
+    document.getElementById("earningsPercentage").innerText = `${data.totalEarningsPercentage}%`;
+    document.getElementById("paidOrdersPercentage").innerText = `${data.totalPaidOrdersPercentage}%`;
+    document.getElementById("foodProductsPercentage").innerText = `${data.totalFoodProductsPercentage}%`;
+    document.getElementById("foodCategoryPercentage").innerText = `${data.totalFoodCategoryPercentage}%`;
+    document.getElementById("unpaidOrdersPercentage").innerText = `${data.totalUnPaidOrdersPercentage}%`;
+    document.getElementById("totalOrdersPercentage").innerText = `${data.totalOrdersPercentage}%`;
+
+    updateProgressCircle("earningsCircle", data.totalEarningsPercentage);
+    updateProgressCircle("paidOrdersCircle", data.totalPaidOrdersPercentage);
+    updateProgressCircle("foodProductsCircle", data.totalFoodProductsPercentage);
+    updateProgressCircle("foodCategoryCircle", data.totalFoodCategoryPercentage);
+    updateProgressCircle("unpaidOrdersCircle", data.totalUnPaidOrdersPercentage);
+    updateProgressCircle("totalOrdersCircle", data.totalOrdersPercentage);
+}
+
+document.addEventListener("DOMContentLoaded", fetchData);
 // Call the display functions when the page loads
 window.onload = function() {
     displayUsers();

@@ -68,7 +68,8 @@ img{
 
 h1{
     font-weight: 800;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    
 }
 
 h2{
@@ -139,7 +140,36 @@ aside .toggle .logo{
     display: flex;
     gap: 0.5rem;
 }
+.analyse {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
+
+.info h1, .info h3 {
+    margin: 0;
+}
+.progresss {
+    display: flex;
+    align-items: center;
+}
+.progresss svg {
+    width: 76px;
+    height: 76px;
+}
+.progresss circle {
+    fill: none;
+    stroke-width: 4;
+    stroke: #00aaff;
+    stroke-dasharray: 226;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s ease-out;
+}
+.percentage p {
+    margin: 0;
+    font-size: 20px;
+}
 
 
 aside .toggle .close{

@@ -35,6 +35,12 @@
                     </span>
                     <h3>Dashboard</h3>
                 </a>
+                <a href="../stock/stock.html">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                    <h3>Stock</h3>
+                </a>
                 <a href="../users/users.html">
                     <span class="material-icons-sharp">
                         person
@@ -57,7 +63,7 @@
                     </span>
                     <h3>Tables</h3>
                 </a>
-                <a href="../categorys/category.html" class="active">
+                <a href="../categorys/category.html" >
                     <span class="material-icons-sharp">
                         category
                     </span>
@@ -69,20 +75,48 @@
                     </span>
                     <h3>Products</h3>
                 </a>
-                <a href="../products/addproduct.html">
+                <a href="../products/addproduct.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>
                     <h3>New product</h3>
                 </a>
-                <a href="../Orders/orders.html">
+                <a href="../Orders/orders.html" id="orders-link" >
                     <span class="material-icons-sharp">
                         list_alt
                     </span>
                     <h3>Orders</h3>
-                    <span class="message-count">27</span>
+                    <span class="message-count" id="order-count" style="display: none;"></span>
                 </a>
-                <a href="../Orders/addorder.html">
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        updateOrderCount();
+                    });
+                
+                    async function updateOrderCount() {
+                        try {
+                            const response = await eel.fetch_orders_status()();
+                            console.log('Fetched orders:', response); 
+                            const orderCount = response.length;
+                
+                            console.log('Order count:', orderCount);
+                
+                            const orderCountElement = document.getElementById('order-count');
+                            
+                            if (orderCount > 0) {
+                                orderCountElement.textContent = orderCount;
+                                orderCountElement.style.display = 'inline-block'; 
+                            } else {
+                                orderCountElement.style.display = 'none'; 
+                            }
+                        } catch (error) {
+                            console.error('Error updating order count:', error);
+                        }
+                    }
+                </script>               
+                
+                <a href="../Orders/addorder.html" >
                     <span class="material-icons-sharp">
                         add
                     </span>

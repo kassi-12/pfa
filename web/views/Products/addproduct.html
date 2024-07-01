@@ -27,85 +27,120 @@
             </div>
 
             <div class="sidebar">
-                <a href="../Dashboard/index.html">
-                    <span class="material-icons-sharp">
-                        dashboard
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="../users/users.html">
-                    <span class="material-icons-sharp">
-                        person
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="../users/adduser.html">
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-                    <h3>New Users</h3>
-                </a>
-                <a href="../groups/group.html" class="active">
-                    <span class="material-icons-sharp">group</span>
-                    <h3>Groups</h3>
-                </a>
-                <a href="../Tables/tables.html">
-                    <span class="material-icons-sharp">
-                        table_restaurant
-                    </span>
-                    <h3>Tables</h3>
-                </a>
-                <a href="../categorys/category.html" class="active">
-                    <span class="material-icons-sharp">
-                        category
-                    </span>
-                    <h3>Category</h3>
-                </a>
-                <a href="../products/products.html">
-                    <span class="material-icons-sharp">
-                        inventory_2
-                    </span>
-                    <h3>Products</h3>
-                </a>
-                <a href="../products/addproduct.html">
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-                    <h3>New product</h3>
-                </a>
-                <a href="../Orders/orders.html">
-                    <span class="material-icons-sharp">
-                        list_alt
-                    </span>
-                    <h3>Orders</h3>
-                    <span class="message-count">27</span>
-                </a>
-                <a href="../Orders/addorder.html">
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-                    <h3>New order</h3>
-                </a>
-                <a href="../Raports/report.html">
-                    <span class="material-icons-sharp">
-                        report_gmailerrorred
-                    </span>
-                    <h3>Reports</h3>
-                </a>
-                <a href="../Settings/settings.html">
-                    <span class="material-icons-sharp">
-                        settings
-                    </span>
-                    <h3>Settings</h3>
-                </a>
-
-                <a href="../../login.html">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
+                <div class="sidebar">
+                    <a href="../Dashboard/index.html">
+                        <span class="material-icons-sharp">
+                            dashboard
+                        </span>
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="../stock/stock.html">
+                        <span class="material-icons-sharp">
+                            inventory
+                        </span>
+                        <h3>Stock</h3>
+                    </a>
+                    <a href="../users/users.html">
+                        <span class="material-icons-sharp">
+                            person
+                        </span>
+                        <h3>Users</h3>
+                    </a>
+                    <a href="../users/adduser.html">
+                        <span class="material-icons-sharp">
+                            add
+                        </span>
+                        <h3>New Users</h3>
+                    </a>
+                    <a href="../groups/group.html">
+                        <span class="material-icons-sharp">group</span>
+                        <h3>Groups</h3>
+                    </a>
+                    <a href="../Tables/tables.html">
+                        <span class="material-icons-sharp">
+                            table_restaurant
+                        </span>
+                        <h3>Tables</h3>
+                    </a>
+                    <a href="../categorys/category.html" >
+                        <span class="material-icons-sharp">
+                            category
+                        </span>
+                        <h3>Category</h3>
+                    </a>
+                    <a href="../products/products.html">
+                        <span class="material-icons-sharp">
+                            inventory_2
+                        </span>
+                        <h3>Products</h3>
+                    </a>
+                    <a href="../products/addproduct.html" class="active">
+                        <span class="material-icons-sharp">
+                            add
+                        </span>
+                        <h3>New product</h3>
+                    </a>
+                    <a href="../Orders/orders.html" id="orders-link" >
+                        <span class="material-icons-sharp">
+                            list_alt
+                        </span>
+                        <h3>Orders</h3>
+                        <span class="message-count" id="order-count" style="display: none;"></span>
+                    </a>
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            updateOrderCount();
+                        });
+                    
+                        async function updateOrderCount() {
+                            try {
+                                const response = await eel.fetch_orders_status()();
+                                console.log('Fetched orders:', response); 
+                                const orderCount = response.length;
+                    
+                                console.log('Order count:', orderCount);
+                    
+                                const orderCountElement = document.getElementById('order-count');
+                                
+                                if (orderCount > 0) {
+                                    orderCountElement.textContent = orderCount;
+                                    orderCountElement.style.display = 'inline-block'; 
+                                } else {
+                                    orderCountElement.style.display = 'none'; 
+                                }
+                            } catch (error) {
+                                console.error('Error updating order count:', error);
+                            }
+                        }
+                    </script>               
+                    
+                    <a href="../Orders/addorder.html" >
+                        <span class="material-icons-sharp">
+                            add
+                        </span>
+                        <h3>New order</h3>
+                    </a>
+                    <a href="../Raports/report.html">
+                        <span class="material-icons-sharp">
+                            report_gmailerrorred
+                        </span>
+                        <h3>Reports</h3>
+                    </a>
+                    <a href="../Settings/settings.html">
+                        <span class="material-icons-sharp">
+                            settings
+                        </span>
+                        <h3>Settings</h3>
+                    </a>
+    
+                    <a href="../../login.html">
+                        <span class="material-icons-sharp">
+                            logout
+                        </span>
+                        <h3>Logout</h3>
+                    </a>
+                </div>
         </aside>
         <!-- End of Sidebar Section -->
 
