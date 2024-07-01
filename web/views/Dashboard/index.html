@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/styles/style.css"> <!-- Adjust the path as needed -->
+    <link rel="stylesheet" href="../../assets/styles/style.css"> 
+    <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <title>RMS</title>
     
 </head>
@@ -162,6 +163,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="sales">
                     <div class="status">
                         <div class="info">
@@ -265,19 +267,19 @@
             <!-- Recent Orders Table -->
             <div class="recent-orders">
                 <h2>Recent Orders</h2>
-                <table>
+                <table class="manage-users-container">
                     <thead>
                         <tr>
                             <th>Order Number</th>
                             <th>Table</th>
                             <th>Payment</th>
                             <th>Status</th>
-                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Orders will be dynamically inserted here -->
+                    <tbody id="order-data">
+                        <!-- Order data will be inserted here -->
                     </tbody>
+                </table>
                 </table>
                 <a href="../Orders/orders.html">Show All</a>
             </div>
@@ -289,19 +291,7 @@
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        light_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        dark_mode
-                    </span>
-                </div>
+                
 
                 <div class="profile">
                     <div class="info">
@@ -309,7 +299,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="../../images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../../images/administrateur.png" alt="Admin profile picture">
                     </div>
                 </div>
 
@@ -318,8 +308,8 @@
 
             <div class="user-profile">
                 <div class="logo">
-                    <img src="../../images/logo.png" alt="Company logo">
-                    <h2>Favor Haven</h2>
+                    <img src="../../images/-1cbf38203acc415288c07dd08199e82e-1@2x.png" alt="Company logo">
+                    <h2>Ease Dine</h2>
                     <p>The Best for The Best</p>
                 </div>
             </div>

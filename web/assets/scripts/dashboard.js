@@ -26,7 +26,7 @@ async function displayUsers() {
             }
 
             const h2 = document.createElement('h2');
-            h2.innerText = user[1]; // Assuming the username is the second element in the array
+            h2.innerText = user[1]; 
 
             userDiv.appendChild(img);
             userDiv.appendChild(h2);
@@ -119,19 +119,19 @@ async function fetchData() {
     const response = await eel.fetch_analysis_data()();
     const data = response;
 
-    document.getElementById("totalEarnings").innerText = `$${data.totalEarnings}`;
-    document.getElementById("totalPaidOrders").innerText = `$${data.totalPaidOrders}`;
-    document.getElementById("totalFoodProducts").innerText = `${data.totalFoodProducts}`;
-    document.getElementById("totalFoodCategory").innerText = `${data.totalFoodCategory}`;
-    document.getElementById("totalUnPaidOrders").innerText = `${data.totalUnPaidOrders}`;
-    document.getElementById("totalOrders").innerText = `${data.totalOrders}`;
-
-    document.getElementById("earningsPercentage").innerText = `${data.totalEarningsPercentage}%`;
-    document.getElementById("paidOrdersPercentage").innerText = `${data.totalPaidOrdersPercentage}%`;
-    document.getElementById("foodProductsPercentage").innerText = `${data.totalFoodProductsPercentage}%`;
-    document.getElementById("foodCategoryPercentage").innerText = `${data.totalFoodCategoryPercentage}%`;
-    document.getElementById("unpaidOrdersPercentage").innerText = `${data.totalUnPaidOrdersPercentage}%`;
-    document.getElementById("totalOrdersPercentage").innerText = `${data.totalOrdersPercentage}%`;
+    document.getElementById("totalEarnings").innerText = `$${data.totalEarnings.toFixed(2)}`;
+    document.getElementById("totalPaidOrders").innerText = data.totalPaidOrders.toFixed(0); // Display as integer
+    document.getElementById("totalFoodProducts").innerText = data.totalFoodProducts.toFixed(0); // Display as integer
+    document.getElementById("totalFoodCategory").innerText = data.totalFoodCategory.toFixed(0); // Display as integer
+    document.getElementById("totalUnPaidOrders").innerText = data.totalUnPaidOrders.toFixed(0); // Display as integer
+    document.getElementById("totalOrders").innerText = data.totalOrders.toFixed(0); // Display as integer
+    
+    document.getElementById("earningsPercentage").innerText = `${data.totalEarningsPercentage.toFixed(2)}%`;
+    document.getElementById("paidOrdersPercentage").innerText = `${data.totalPaidOrdersPercentage.toFixed(2)}%`;
+    document.getElementById("foodProductsPercentage").innerText = `${data.totalFoodProductsPercentage.toFixed(2)}%`;
+    document.getElementById("foodCategoryPercentage").innerText = `${data.totalFoodCategoryPercentage.toFixed(2)}%`;
+    document.getElementById("unpaidOrdersPercentage").innerText = `${data.totalUnPaidOrdersPercentage.toFixed(2)}%`;
+    document.getElementById("totalOrdersPercentage").innerText = `${data.totalOrdersPercentage.toFixed(2)}%`;
 
     updateProgressCircle("earningsCircle", data.totalEarningsPercentage);
     updateProgressCircle("paidOrdersCircle", data.totalPaidOrdersPercentage);
@@ -140,6 +140,7 @@ async function fetchData() {
     updateProgressCircle("unpaidOrdersCircle", data.totalUnPaidOrdersPercentage);
     updateProgressCircle("totalOrdersCircle", data.totalOrdersPercentage);
 }
+
 
 document.addEventListener("DOMContentLoaded", fetchData);
 // Call the display functions when the page loads

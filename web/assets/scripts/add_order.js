@@ -40,11 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     productSelect.innerHTML = '<option value="">Select a product</option>'; // Clear existing options and add default option
 
                     products.forEach(product => {
+                        // Add condition here to check if product status is 'active'
                         const option = document.createElement('option');
                         option.value = product[0];
                         option.text = product[1];
-                        option.dataset.price = product[2]; // Assuming product price is at index 2
-                        option.dataset.quantity = product[3]; // Assuming product quantity is at index 3
+                        option.dataset.price = product[3]; 
+                       
                         productSelect.appendChild(option);
                     });
 
@@ -130,36 +131,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const quantities = document.getElementsByName('quantity[]');
 
         let grossAmount = 0;
-        let allQuantitiesValid = true;
-        const productQuantities = {};
 
         for (let i = 0; i < products.length; i++) {
             const product = products[i].selectedOptions[0];
             if (!product) continue;
 
-            const productID = product.value;
-            const productName = product.text;
             const productPrice = parseFloat(product.dataset.price);
-            const productQuantity = parseInt(product.dataset.quantity);
             const quantity = parseInt(quantities[i].value);
-
-            if (!productQuantities[productID]) {
-                productQuantities[productID] = 0;
-            }
-
-            productQuantities[productID] += quantity;
-
-            if (productQuantities[productID] > productQuantity) {
-                allQuantitiesValid = false;
-                alert(`Not enough quantity for product: ${productName}`);
-                break;
-            }
 
             const itemTotal = isNaN(productPrice) || isNaN(quantity) ? 0 : productPrice * quantity;
             grossAmount += itemTotal;
         }
-
-        if (!allQuantitiesValid) return;
 
         const sCharge = grossAmount * 0.03;
         const vat = grossAmount * 0.13;
@@ -176,53 +158,39 @@ document.addEventListener('DOMContentLoaded', function () {
         const table = document.getElementById('table').value;
         const products = document.getElementsByName('product[]');
         const quantities = document.getElementsByName('quantity[]');
-    
+
         const orderItems = [];
         let grossAmount = 0;
         let allQuantitiesValid = true;
-        const productQuantities = {};
-    
+
         for (let i = 0; i < products.length; i++) {
             const product = products[i].selectedOptions[0];
             if (!product) continue;
-    
+
             const productID = product.value;
             const productName = product.text;
             const productPrice = parseFloat(product.dataset.price);
-            const productQuantity = parseInt(product.dataset.quantity);
             const quantity = parseInt(quantities[i].value);
-    
+
             if (isNaN(quantity) || quantity <= 0) {
                 allQuantitiesValid = false;
                 alert(`Invalid quantity for product: ${productName}`);
                 break;
             }
-    
-            if (!productQuantities[productID]) {
-                productQuantities[productID] = 0;
-            }
-    
-            productQuantities[productID] += quantity;
-    
-            if (productQuantities[productID] > productQuantity) {
-                allQuantitiesValid = false;
-                alert(`Not enough quantity for product: ${productName}`);
-                break;
-            }
-    
+
             const itemTotal = isNaN(productPrice) || isNaN(quantity) ? 0 : productPrice * quantity;
             grossAmount += itemTotal;
-    
+
             orderItems.push({ productID, productName, quantity, itemTotal });
         }
-    
+
         if (!allQuantitiesValid) return;
-    
+
         const sCharge = grossAmount * 0.03;
         const vat = grossAmount * 0.13;
         const discount = parseFloat(document.getElementById('discount').value) || 0;
         const netAmount = grossAmount + sCharge + vat - discount;
-    
+
         const orderData = {
             table,
             orderItems,
@@ -232,27 +200,25 @@ document.addEventListener('DOMContentLoaded', function () {
             discount,
             netAmount,
         };
-    
+
         console.log("Creating order with data:", orderData);
-    
+
         try {
             const orderId = await eel.add_order(
                 table,
-                1, 
+                1, // Assuming user_id is fixed or you retrieve it differently
                 grossAmount,
                 sCharge,
                 vat,
                 discount,
-                netAmount,
-                null, 
-                "In Progress" 
+                netAmount
             )();
-    
+
             if (orderId) {
                 console.log(`Order created with ID: ${orderId}`);
                 const response = await eel.add_order_items(orderId, orderItems)();
                 console.log(response);
-    
+
                 // Show a success message
                 alert('Order added successfully!');
             } else {
@@ -264,5 +230,5 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('An error occurred. Please try again later.');
         }
     }
-    
+
 });

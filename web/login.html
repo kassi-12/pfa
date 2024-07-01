@@ -3,105 +3,105 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="assets/styles/login_style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" />
+    <title>RMS</title>
+    <script src="/eel.js"></script>
+    <script>
+      function login() {
+        var username = document.getElementById('username').value.toLowerCase();
+        var password = document.getElementById('password').value;
+        
+        // Call Eel function to check login credentials and retrieve user ID
+        eel.check_login(username, password)(function(response) {
+          if (response.success) {
+            console.log("Login successful!");
+            showLoginStatus("Login successful!");
+            var userId = response.user_id;
+            redirectToDashboard(userId);
+          } else {
+            console.log("Invalid username or password!");
+            showLoginStatus("Invalid username or password!");
+          }
+        });
+      }
 
-    <link rel="stylesheet" href="assets/styles/login_style.css" >
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@700&display=swap"
-    />
+      function showLoginStatus(message) {
+        var loginStatusElement = document.getElementById('loginStatus');
+        if (loginStatusElement) {
+          loginStatusElement.innerText = message;
+        } else {
+          console.error("Element with id 'loginStatus' not found.");
+        }
+      }
+
+      function redirectToDashboard(userId) {
+       
+        window.location.href = "/views/Dashboard/index.html?user_id=" + userId;
+      }
+    </script>
   </head>
   <body>
     <div class="desktop-1">
       <div class="desktop-1-inner">
-        <div class="frame-parent">
-          <div class="atelier-delivery-time-wrapper">
-            <div class="atelier-delivery-time">
-              <img
-                class="cbf3820-3acc-4152-88c0-7dd0819-icon"
-                loading="lazy"
-                alt=""
-                src="./images/-1cbf38203acc415288c07dd08199e82e-1@2x.png"
-              />
-
-              <div class="dineease-wrapper">
-                <h2 class="dineease">
-                  <span>Dine</span>
-                  <span class="ease">Ease</span>
-                </h2>
-              </div>
+        <div class="atelier-delivery-time-wrapper">
+          <div class="atelier-delivery-time">
+            <img class="cbf3820-3acc-4152-88c0-7dd0819-icon" loading="lazy" alt="" src="./images/-1cbf38203acc415288c07dd08199e82e-1@2x.png" />
+            <div class="dineease-wrapper">
+              <h2 class="dineease">
+                <span>Dine</span>
+                <span class="ease">Ease</span>
+              </h2>
             </div>
-          </div>
-          <div class="domicile-delivery-speed-wrapper">
-            <div class="domicile-delivery-speed">
-              <h1 class="where-your-restaurant-container">
-                <p class="where-your-restaurant">
-                  Where your restaurant management is as delightful as your
-                  dishes!
-                </p>
-              </h1>
-              <div class="welcome-back-please">
-                Welcome back! Please login to your account.
-              </div>
-            </div>
-          </div>
-          <div class="credentials-content-wrapper">
-            <div class="credentials-content">
-              <div class="atelier-delivery-speed">
-                <div class="emai-section">
-                  <div class="email-field"></div>
-                  <div class="login">Login</div>
-                  <input
-                    class="hakeemdigitalcom"
-                    placeholder="hakeem@digital.com         "
-                    type="text"
-                  />
-                </div>
-                <div class="retrait-info">
-                  <div class="retrait-info-child"></div>
-                  <div class="pass">
-                    <div class="password">Password</div>
-                    <input
-                      class="password-placeholder"
-                      placeholder="•••••••••••••••••••••••••"
-                      type="text"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="retrait-details">
-                <div class="remember-forgot-content">
-                  <input class="remember-me" type="checkbox" />
-
-                  <div class="remember-me1">Remember Me</div>
-                </div>
-               
-              </div>
-            </div>
-          </div>
-          <div class="domicile-option">
-            <div class="login1">
-              <button id="loginButton" class="button-fields"></button>
-              <div  class="login2">Login</div>
-            </div>
-            <script>
-              document.getElementById("loginButton").addEventListener("click", function() {
-
-                  window.location.href = "/views/Dashboard/index.html";
-              });
-              </script>
           </div>
         </div>
+        <div class="domicile-delivery-speed-wrapper">
+          <div class="domicile-delivery-speed">
+            <h1 class="where-your-restaurant-container">
+              <p class="where-your-restaurant">
+                Where your restaurant management is as delightful as your dishes!
+              </p>
+            </h1>
+            
+            <div id="loginStatus" class="welcome-back-please">
+              Welcome back! Please login to your account.
+            </div>
+          </div>
+        </div>
+        <div class="credentials-content-wrapper">
+          <div class="credentials-content">
+            <div class="atelier-delivery-speed">
+              <div class="emai-section">
+                <div class="email-field"></div>
+                <div class="login">Login</div>
+                <input id="username" class="hakeemdigitalcom" placeholder="email@ease.de" type="email" required/>
+              </div>
+              <div class="retrait-info">
+                <div class="retrait-info-child"></div>
+                <div class="pass">
+                  <div class="password">Password</div>
+                  <input id="password" class="password-placeholder" placeholder="password" type="password" required/>
+                </div>
+              </div>
+            </div>
+            <div class="retrait-details">
+              <div class="remember-forgot-content">
+                <input class="remember-me" type="checkbox" />
+                <div class="remember-me1">Remember Me</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="domicile-option">
+          <div class="login1">
+            <button type="button" id="loginButton" class="button-fields" onclick="login()">Login</button>
+          </div>
+    
+          
+    
+        </div>
       </div>
-      <img
-        class="minilog"
-        loading="lazy"
-        alt=""
-        src="./images/food4km37wpodzrcbv5gvw-1@2x.png"
-      />
+      
     </div>
   </body>
 </html>

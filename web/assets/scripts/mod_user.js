@@ -29,7 +29,7 @@ async function fetchUser(userId) {
 async function updateUser() {
     const userId = getUserIdFromURL();
     const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email').value.toLowerCase();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
     const firstName = document.getElementById('first-name').value;

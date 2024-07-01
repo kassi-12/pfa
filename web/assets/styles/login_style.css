@@ -1,453 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-success: #1B9C85;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
 body {
-	margin: 0;
-	line-height: normal;
-  }
-  
-  :root {
-	/* fonts */
-	--font-roboto: Roboto;
-	--font-open-sans: "Open Sans";
-  
-	/* font sizes */
-	--font-size-lg: 18px;
-  
-	/* Colors */
-	--color-white: #fff;
-	--color-darkslategray: #41444b;
-	--color-tomato: #fa6a41;
-	--color-gray-100: rgba(0, 0, 0, 0.61);
-	--color-silver: #c2bbbb;
-	--color-blueviolet: #3751fe;
-  
-	/* Gaps */
-	--gap-6xl: 25px;
-	--gap-7xs: 6px;
-  
-	/* Paddings */
-	--padding-xl: 20px;
-	--padding-mid: 17px;
-	--padding-base: 16px;
-	--padding-3xs: 10px;
-	--padding-8xl: 27px;
-	--padding-xs: 12px;
-	--padding-12xs: 1px;
-  }
-  .cbf3820-3acc-4152-88c0-7dd0819-icon {
-	height: 59px;
-	width: 64px;
-	position: relative;
-	border-radius: 243px;
-	object-fit: contain;
-	min-height: 59px;
-  }
-  .ease {
-	color: var(--color-tomato);
-  }
-  .dineease {
-	margin: 0;
-	position: relative;
-	font-size: inherit;
-	font-weight: 700;
-	font-family: inherit;
-  }
-  .dineease-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	padding: 24px 0 0;
-  }
-  .atelier-delivery-time,
-  .atelier-delivery-time-wrapper {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-  }
-  .atelier-delivery-time {
-	gap: 5px;
-  }
-  .atelier-delivery-time-wrapper {
-	padding: 0 var(--padding-12xs);
-	font-size: 30px;
-  }
-  .where-your-restaurant {
-	margin-block-start: 0;
-	margin-block-end: 10px;
-  }
-  .where-your-restaurant-container {
-	margin: 0;
-	align-self: stretch;
-	position: relative;
-	font-size: inherit;
-	font-weight: 700;
-	font-family: inherit;
-  }
-  .welcome-back-please {
-	position: relative;
-	font-size: var(--font-size-lg);
-	font-family: var(--font-roboto);
-	color: rgba(0, 0, 0, 0.6);
-	white-space: pre-wrap;
-	display: inline-block;
-	max-width: 100%;
-  }
-  .domicile-delivery-speed,
-  .domicile-delivery-speed-wrapper {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	max-width: 100%;
-  }
-  .domicile-delivery-speed {
-	flex: 1;
-	flex-direction: column;
-	gap: var(--gap-6xl);
-  }
-  .domicile-delivery-speed-wrapper {
-	align-self: stretch;
-	flex-direction: row;
-	padding: 0 0 3px var(--padding-12xs);
-	box-sizing: border-box;
-	font-size: 36px;
-	font-family: var(--font-open-sans);
-  }
-  .email-field {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	margin: 0 !important;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: var(--color-white);
-	border: 1px solid var(--color-silver);
-	box-sizing: border-box;
-  }
-  .hakeemdigitalcom,
-  .login {
-	position: relative;
-	display: inline-block;
-	z-index: 1;
-  }
-  .login {
-	min-width: 45px;
-  }
-  .hakeemdigitalcom {
-	width: 171px;
-	border: 0;
-	outline: 0;
-	font-weight: 500;
-	font-family: var(--font-roboto);
-	font-size: var(--font-size-lg);
-	background-color: transparent;
-	height: 21px;
-	color: var(--color-blueviolet);
-	text-align: left;
-	white-space: nowrap;
-	padding: 0;
-  }
-  .emai-section {
-	align-self: stretch;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	padding: var(--padding-xs) var(--padding-8xl) 14px;
-	position: relative;
-	gap: var(--gap-7xs);
-  }
-  .retrait-info-child {
-	height: 74px;
-	width: 554px;
-	position: relative;
-	background-color: var(--color-white);
-	border: 1px solid var(--color-silver);
-	box-sizing: border-box;
-	display: none;
-	max-width: 100%;
-  }
-  .password,
-  .password-placeholder {
-	position: relative;
-	display: inline-block;
-	min-width: 80px;
-  }
-  .password-placeholder {
-	width: 100%;
-	border: 0;
-	outline: 0;
-	font-weight: 500;
-	font-family: var(--font-roboto);
-	font-size: var(--font-size-lg);
-	background-color: transparent;
-	align-self: stretch;
-	height: 21px;
-	color: var(--color-blueviolet);
-	text-align: left;
-	min-width: 91px;
-	padding: 0;
-  }
-  .atelier-delivery-speed,
-  .pass,
-  .retrait-info {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-  }
-  .pass {
-	width: 152px;
-	flex-direction: column;
-	gap: var(--gap-7xs);
-	z-index: 1;
-  }
-  .atelier-delivery-speed,
-  .retrait-info {
-	align-self: stretch;
-	max-width: 100%;
-  }
-  .retrait-info {
-	background-color: var(--color-white);
-	border: 1px solid var(--color-silver);
-	box-sizing: border-box;
-	flex-direction: row;
-	padding: var(--padding-3xs) var(--padding-8xl) var(--padding-xs);
-  }
-  .atelier-delivery-speed {
-	flex-direction: column;
-  }
-  .remember-me {
-	margin: 0;
-	height: 17px;
-	width: 13px;
-  }
-  .remember-me1 {
-	position: relative;
-	display: inline-block;
-	min-width: 118px;
-  }
-  .remember-forgot-content {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-	gap: 11px;
-  }
-  .forgot-password {
-	cursor: pointer;
-	border: 0;
-	padding: 0;
-	background-color: transparent;
-	position: relative;
-	font-size: var(--font-size-lg);
-	font-family: var(--font-roboto);
-	color: var(--color-gray-100);
-	text-align: left;
-	display: inline-block;
-  }
-  .retrait-details {
-	width: 525px;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 20px;
-	max-width: 100%;
-  }
-  .credentials-content,
-  .credentials-content-wrapper {
-	display: flex;
-	justify-content: flex-start;
-	max-width: 100%;
-  }
-  .credentials-content {
-	flex: 1;
-	flex-direction: column;
-	align-items: flex-end;
-	gap: 21px;
-  }
-  .credentials-content-wrapper {
-	align-self: stretch;
-	flex-direction: row;
-	align-items: flex-start;
-	padding: 0 0 var(--padding-3xs) 4px;
-	box-sizing: border-box;
-	color: var(--color-gray-100);
-  }
-  .button-fields {
-	cursor: pointer;
-	border: 0;
-	padding: 0;
-	background-color: var(--color-tomato);
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	margin: 0 !important;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	box-shadow: 0 4px 3px rgba(0, 0, 0, 0.25);
-  }
-  .login1,
-  .login2 {
-	position: relative;
-  }
-  .login2 {
-	display: inline-block;
-	min-width: 45px;
-	z-index: 1;
-  }
-  .login1 {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-	padding: var(--padding-mid) 38px var(--padding-base) 46px;
-	white-space: nowrap;
-  }
-  .signup-child {
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	margin: 0 !important;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: var(--color-white);
-	border: 1px solid var(--color-tomato);
-	box-sizing: border-box;
-  }
-  .sign-up {
-	position: relative;
-	font-size: var(--font-size-lg);
-	font-family: var(--font-roboto);
-	color: var(--color-darkslategray);
-	text-align: left;
-	display: inline-block;
-	min-width: 62px;
-	z-index: 1;
-  }
-  .signup {
-	cursor: pointer;
-	border: 0;
-	padding: var(--padding-mid) 33px var(--padding-base) 34px;
-	background-color: transparent;
-	flex-direction: row;
-	position: relative;
-	white-space: nowrap;
-  }
-  .desktop-1-inner,
-  .domicile-option,
-  .frame-parent,
-  .signup {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-  }
-  .domicile-option {
-	flex-direction: row;
-	padding: 0 var(--padding-xl) 0 0;
-	gap: 33px;
-	color: var(--color-white);
-  }
-  .desktop-1-inner,
-  .frame-parent {
-	flex-direction: column;
-	max-width: 100%;
-  }
-  .frame-parent {
-	align-self: stretch;
-	gap: 62px;
-  }
-  .desktop-1-inner {
-	width: 558px;
-	padding: 62px 0 0;
-	box-sizing: border-box;
-	min-width: 558px;
-  }
-  .food-4k-m37wpodzrcbv5gvw-1-icon {
-	height: 1024px;
-	flex: 1;
-	position: relative;
-	max-width: 100%;
-	overflow: hidden;
-	object-fit: cover;
-	min-width: 502px;
-  }
-  .desktop-1 {
-	width: 100%;
-	position: relative;
-	background-color: var(--color-white);
-	overflow: hidden;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-	padding: 0 0 0 85px;
-	box-sizing: border-box;
-	gap: var(--gap-6xl);
-	letter-spacing: normal;
-	line-height: normal;
-	text-align: left;
-	font-size: var(--font-size-lg);
-	color: var(--color-darkslategray);
-	font-family: var(--font-roboto);
-  }
-  @media screen and (max-width: 1125px) {
-	.desktop-1-inner {
-	  flex: 1;
-	}
-	.desktop-1 {
-	  flex-wrap: wrap;
-	  padding-left: var(--padding-xl);
-	  padding-right: var(--padding-xl);
-	  padding-bottom: var(--padding-xl);
-	  box-sizing: border-box;
-	}
-  }
-  @media screen and (max-width: 1050px) {
-	.dineease {
-	  font-size: 24px;
-	}
-	.where-your-restaurant-container {
-	  font-size: 29px;
-	}
-	.desktop-1-inner {
-	  padding-top: 40px;
-	  box-sizing: border-box;
-	}
-  }
-  @media screen and (max-width: 750px) {
-	.frame-parent {
-	  gap: 31px;
-	}
-	.desktop-1-inner,
-	.food-4k-m37wpodzrcbv5gvw-1-icon {
-	  min-width: 100%;
-	}
-  }
-  @media screen and (max-width: 450px) {
-	.dineease {
-	  font-size: var(--font-size-lg);
-	}
-	.where-your-restaurant-container {
-	  font-size: 22px;
-	}
-	.retrait-details {
-	  flex-wrap: wrap;
-	}
-	.domicile-option {
-	  gap: 16px;
-	}
-	.frame-parent {
-	  gap: 15px;
-	}
-	.desktop-1-inner {
-	  padding-top: 26px;
-	  box-sizing: border-box;
-	}
-  }
-  
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.desktop-1 {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.desktop-1-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.atelier-delivery-time-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dineease-wrapper h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.domicile-delivery-speed h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-dark);
+}
+
+.domicile-delivery-speed .welcome-back-please {
+    font-size: 1rem;
+    color: var(--color-dark-variant);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.credentials-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.credentials-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.emai-section,
+.retrait-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.emai-section .login,
+.password-placeholder {
+    font-size: 0.9rem;
+    color: var(--color-dark);
+}
+
+.hakeemdigitalcom,
+.password-placeholder {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--border-radius-1);
+    border: 1px solid var(--color-light);
+    font-size: 0.88rem;
+    color: var(--color-dark);
+}
+
+.hakeemdigitalcom:focus,
+.password-placeholder:focus {
+    border-color: var(--color-primary);
+}
+
+.remember-forgot-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.remember-me {
+    width: 1rem;
+    height: 1rem;
+}
+
+.remember-me1 {
+    font-size: 0.88rem;
+    color: var(--color-dark-variant);
+}
+
+.button-fields {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-fields:hover {
+    background-color: darken(var(--color-primary), 10%);
+}
+
+.minilog {
+    width: 100%;
+    max-width: 150px;
+    margin-top: 2rem;
+}

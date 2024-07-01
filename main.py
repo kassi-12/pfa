@@ -336,24 +336,7 @@ def delete_group(id):
     finally:
         if conn:
             conn.close()
-@eel.expose
-def fetch_products():
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT id, name, category_id, price, status, action
-            FROM products
-        ''')
-        products = cursor.fetchall()
-        logging.info("Products fetched successfully!")
-        return products
-    except Exception as e:
-        logging.error(f"An error occurred while fetching products: {e}")
-        return []
-    finally:
-        if conn:
-            conn.close()
+
 
 
 @eel.expose
@@ -422,21 +405,33 @@ def update_order(id, method, status):
             conn.close()
 
 @eel.expose
-def add_order(table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status):
+def add_order(table_id, user_id, gross_amount, s_charge, vat, discount, net_amount):
+   
+    
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
+        
         cursor.execute('''
-            INSERT INTO orders (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, method, status))
+            INSERT INTO orders (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, "In Progress")
+        ''', (table_id, user_id, gross_amount, s_charge, vat, discount, net_amount))
+        
         order_id = cursor.lastrowid
         conn.commit()
+        
         logging.info(f"Order {order_id} added successfully!")
+        
         return order_id
+    
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error occurred: {e}")
+        return None
+    
     except Exception as e:
         logging.error(f"An error occurred while adding order: {e}")
         return None
+    
     finally:
         if conn:
             conn.close()
@@ -615,7 +610,7 @@ def fetch_analysis_data():
         # Fetch total orders
         cursor.execute('SELECT COUNT(*) FROM orders')
         total_orders = cursor.fetchone()[0] or 0
-
+        
         # Calculate percentages (example calculation, you can adjust as needed)
         total_earnings_percentage = (total_earnings / 100000) * 100
         total_paid_orders_percentage = (total_paid_orders / 1000) * 100
@@ -643,74 +638,121 @@ def fetch_analysis_data():
     except Exception as e:
         logging.error(f"An error occurred: {e}")
         return {}
+# Function to fetch products
 @eel.expose
-def add_stock_item(item_name, quantity, unit, price_per_unit):
+def fetch_products():
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO stock (item_name, quantity, unit, price_per_unit) VALUES (?, ?, ?, ?)',
-                       (item_name, quantity, unit, price_per_unit))
-        conn.commit()
-        logging.info("Stock item added successfully!")
-        return True
+        cursor.execute('SELECT id, name, category_id, price, status, description FROM products')
+        products = cursor.fetchall()
+        logging.info("Products fetched successfully!")
+        return products
     except Exception as e:
-        conn.rollback()
-        logging.error(f"An error occurred while adding stock item: {e}")
-        return False
-    finally:
-        if conn:
-            conn.close()
-
-@eel.expose
-def fetch_stock():
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM stock')
-        stock_items = cursor.fetchall()
-        logging.info("Stock items fetched successfully!")
-        return stock_items
-    except Exception as e:
-        logging.error(f"An error occurred while fetching stock items: {e}")
+        logging.error(f"An error occurred while fetching products: {e}")
         return []
     finally:
         if conn:
             conn.close()
 
+# Function to add a product
 @eel.expose
-def update_stock_item(id, item_name, quantity, unit, price_per_unit):
+def add_product(name, category_id, price, status, description):
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('UPDATE stock SET item_name=?, quantity=?, unit=?, price_per_unit=? WHERE id=?',
-                       (item_name, quantity, unit, price_per_unit, id))
+        cursor.execute('''
+        INSERT INTO products (name, category_id, price, status, description)
+        VALUES (?, ?, ?, ?, ?)
+        ''', (name, category_id, price, status, description))
+
         conn.commit()
-        logging.info("Stock item updated successfully!")
-        return True
+        logging.info(f"Product {name} added successfully!")
+        return "Product added successfully!"
+    except sqlite3.IntegrityError:
+        logging.warning("Product already exists!")
+        return "Product already exists!"
     except Exception as e:
-        conn.rollback()
-        logging.error(f"An error occurred while updating stock item: {e}")
-        return False
+        logging.error(f"An error occurred while adding product {name}: {e}")
+        return f"An error occurred: {e}"
     finally:
         if conn:
             conn.close()
 
+# Function to update a product
 @eel.expose
-def delete_stock_item(id):
+def update_product(id, name, category_id, price, status, description):
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM stock WHERE id=?', (id,))
+        cursor.execute('''
+        UPDATE products
+        SET name = ?, category_id = ?, price = ?, status = ?, description = ?
+        WHERE id = ?
+        ''', (name, category_id, price, status, description, id))
+
         conn.commit()
-        logging.info("Stock item deleted successfully!")
-        return True
+        logging.info(f"Product with ID {id} updated successfully!")
+        return "Product updated successfully!"
     except Exception as e:
-        conn.rollback()
-        logging.error(f"An error occurred while deleting stock item: {e}")
-        return False
+        logging.error(f"An error occurred while updating product {id}: {e}")
+        return f"An error occurred: {e}"
     finally:
         if conn:
             conn.close()
+
+# Function to delete a product
+@eel.expose
+def delete_product(id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM products WHERE id = ?', (id,))
+        conn.commit()
+        logging.info(f"Product with ID {id} deleted successfully!")
+        return "Product deleted successfully!"
+    except Exception as e:
+        logging.error(f"An error occurred while deleting product {id}: {e}")
+        return f"An error occurred: {e}"
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def fetch_product_by_id(product_id):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
+        product = cursor.fetchone()  
+        logging.info(f"Fetched product with ID {product_id} successfully!")
+        return product
+    except Exception as e:
+        logging.error(f"Error fetching product with ID {product_id}: {e}")
+        return None
+    finally:
+        if conn:
+            conn.close()
+@eel.expose
+def check_login(username, password):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT id FROM users WHERE email = ? AND password = ?', (username, password))
+        user_id = cursor.fetchone()
+
+        if user_id:
+            logging.info(f"User {username} logged in successfully!")
+            return {"success": True, "user_id": user_id[0]}
+        else:
+            logging.warning(f"Invalid login attempt for user {username}")
+            return {"success": False}
+    except Exception as e:
+        logging.error(f"An error occurred while checking login: {e}")
+        return {"success": False}
+    finally:
+        if conn:
+            conn.close()
+
 eel.start("login.html", size=(1920, 1080))
 # # Start the Eel application
 # def start_app():

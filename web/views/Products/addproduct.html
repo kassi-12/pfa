@@ -146,12 +146,9 @@
 
         <!-- Main Content -->
         <main>
-            <div class="form-container ">
+            <div class="form-container">
                 <div class="form-left">
-                    <div class="form-group">
-                        <label for="product-image">Product Image</label>
-                        <input type="file" id="product-image" name="product-image" accept="image/*">
-                    </div>
+                    
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
                         <input type="text" id="product-name" name="product-name" placeholder="Product Name">
@@ -169,26 +166,21 @@
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select id="category" name="category">
-                            <!-- Assuming categories are dynamically loaded from a database -->
-                            <option value="appetizer">Appetizer</option>
-                            <option value="main-course">Main Course</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="beverage">Beverage</option>
-                            <!-- Add more categories as needed -->
+                            <!-- Categories will be dynamically loaded from the database -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="active">Active</label>
+                        <label for="status">Status</label>
                         <div class="radio-group">
-                            <input type="radio" id="active-yes" name="active" value="yes">
-                            <label for="active-yes">Yes</label>
-                            <input type="radio" id="active-no" name="active" value="no">
-                            <label for="active-no">No</label>
+                            <input type="radio" id="active-yes" name="status" value="active">
+                            <label for="active-yes">Active</label>
+                            <input type="radio" id="active-no" name="status" value="inactive">
+                            <label for="active-no">Inactive</label>
                         </div>
                     </div>
                 </div>
                 <div class="button-container">
-                    <button class="submit-btn">ADD</button>
+                    <button class="submit-btn" onclick="submitProduct()">ADD</button>
                 </div>
             </div>
         </main>
@@ -198,30 +190,27 @@
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        light_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        dark_mode
-                    </span>
-                </div>
-        
+                
+
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b>Kassimi</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="../../images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../../images/administrateur.png" alt="Admin profile picture">
                     </div>
                 </div>
-        
+
+            </div>
+            <!-- End of Nav -->
+
+            <div class="user-profile">
+                <div class="logo">
+                    <img src="../../images/-1cbf38203acc415288c07dd08199e82e-1@2x.png" alt="Company logo">
+                    <h2>Ease Dine</h2>
+                    <p>The Best for The Best</p>
+                </div>
             </div>
             <!-- End of Nav -->
         
@@ -292,7 +281,7 @@
         
         </div>
         
-
+        <script src="../../assets/scripts/add_product.js"></script>
 
 </body>
 

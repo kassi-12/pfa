@@ -147,70 +147,26 @@
 
         <!-- Main Content -->
         <main>
-            
             <div class="form-container">
                 <div class="manage-users-container">
                     <div class="form-group">
-                        Show 
-                        <select id="category">
+                        Show
+                        <select id="category-count">
                             <option value="4">4</option>
                             <!-- More options can be added here -->
-                        </select> 
+                        </select>
                     </div>
-                    <table>
+                    <table id="products-table">
                         <thead>
                             <tr>
                                 <th>Product Name</th>
                                 <th>Price</th>
-                                <th>status</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>donna</td>
-                               
-                                <td>10</td>
-                                
-                                <td>7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>donna</td>
-                               
-                                <td>10</td>
-                                
-                                <td>7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>donna</td>
-                               
-                                <td>10</td>
-                                
-                                <td>7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>donna</td>
-                               
-                                <td>10</td>
-                                
-                                <td>7025556960</td>
-                                <td class="actions">
-                                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                            <!-- Product rows will be dynamically inserted here -->
                         </tbody>
                     </table>
                     <div class="pagination-container">
@@ -223,44 +179,31 @@
                     </div>
                 </div>
             </div>
-            <!-- End of User Management -->
         </main>
         <!-- End of Main Content -->
         
         <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        light_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        dark_mode
-                    </span>
-                </div>
-        
+                
+
                 <div class="profile">
                     <div class="info">
                         <p>Hey, <b>Kassimi</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="../../images/profile-1.jpg" alt="Admin profile picture">
+                        <img src="../../images/administrateur.png" alt="Admin profile picture">
                     </div>
                 </div>
-        
+
             </div>
             <!-- End of Nav -->
-        
+
             <div class="user-profile">
                 <div class="logo">
-                    <img src="../../images/logo.png" alt="Company logo">
-                    <h2>Favor Haven</h2>
+                    <img src="../../images/-1cbf38203acc415288c07dd08199e82e-1@2x.png" alt="Company logo">
+                    <h2>Ease Dine</h2>
                     <p>The Best for The Best</p>
                 </div>
             </div>
@@ -325,7 +268,7 @@
         </div>
         
 
-    <script src="./assest/scripts/index.js"></script>
+    <script src="../../assets/scripts/product.js"></script>
 </body>
 
 </html>

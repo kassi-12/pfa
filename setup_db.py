@@ -74,6 +74,7 @@ def create_db():
             category_id INTEGER NOT NULL,
             price REAL NOT NULL,
             status TEXT,
+            description TEXT,
             action TEXT,
             FOREIGN KEY (category_id) REFERENCES category(id)
         )

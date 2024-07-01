@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/mang_style.css">
     <link rel="stylesheet" href="../../assets/styles/style.css">
-    <link rel="stylesheet" href="../../assets/styles/add_style.css">
     <script type="text/javascript" src="/eel.js"></script>
 
     <title>RMS</title>
@@ -19,7 +18,7 @@
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
-                <h1>Add Order</h2>
+                <h1>Add Product</h2>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
@@ -75,7 +74,7 @@
                         </span>
                         <h3>Products</h3>
                     </a>
-                    <a href="../products/addproduct.html" >
+                    <a href="../products/addproduct.html" class="active">
                         <span class="material-icons-sharp">
                             add
                         </span>
@@ -116,7 +115,7 @@
                         }
                     </script>               
                     
-                    <a href="../Orders/addorder.html" class="active">
+                    <a href="../Orders/addorder.html" >
                         <span class="material-icons-sharp">
                             add
                         </span>
@@ -147,52 +146,44 @@
 
         <!-- Main Content -->
         <main>
-    <div class="form-container">
-        <div class="manage-users-container">
-            <div class="form-group">
-                <label for="table">Table</label>
-                <select id="table" name="table" class="form-control">
-                    <!-- Options will be dynamically added here -->
-                </select>
-            </div>
-            <div id="product-container">
-                <div class="form-group">
-                    <label for="product">Product</label>
+            <div class="form-container">
+                <div class="form-left">
                     
-                    <span class="material-icons-sharp add-product-btn">add</span>
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="product-name" placeholder="Product Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" placeholder="Price" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-right">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <!-- Categories will be dynamically loaded from the database -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <div class="radio-group">
+                            <input type="radio" id="active-yes" name="status" value="active">
+                            <label for="active-yes">Active</label>
+                            <input type="radio" id="active-no" name="status" value="inactive">
+                            <label for="active-no">Inactive</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="submit-btn" onclick="updateProduct()">UPDATE</button>
                 </div>
             </div>
-            <div id="order-list">
-                <!-- Dynamically added products will appear here -->
-            </div>
-            <div class="totals">
-                <div class="form-group">
-                    <label for="gross-amount">Gross Amount</label>
-                    <input type="text" id="gross-amount" name="gross-amount" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="s-charge">S-Charge 3%</label>
-                    <input type="text" id="s-charge" name="s-charge" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="vat">VAT 13%</label>
-                    <input type="text" id="vat" name="vat" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="discount">Discount</label>
-                    <input type="text" id="discount" name="discount" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="net-amount">Net Amount</label>
-                    <input type="text" id="net-amount" name="net-amount" class="form-control" readonly>
-                </div>
-            </div>
-            <div class="button-container">
-                <button id="create-order-btn" class="submit-btn">Create Order</button>
-            </div>
-        </div>
-    </div>
-</main>
+        </main>
         
         
         <!-- End of Main Content -->
@@ -282,8 +273,8 @@
         
         </div>
         
+        <script src="../../assets/scripts/mod_product.js"></script>
 
-        <script src="../../assets/scripts/add_order.js"></script>
 </body>
 
 </html>
